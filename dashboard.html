@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#06060b">
+    <meta name="description" content="PulseOS Command Center — FIFA World Cup 2026 AI Operating System. Real-time stadium operations, crowd intelligence, AI agents, and digital twin technology.">
+    <title>PulseOS Command Center — FIFA World Cup 2026</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dashboard-body">
+
+    <!-- Mobile Menu Button (shown only on small screens) -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open navigation menu">☰</button>
+
+    <!-- Sidebar Overlay (mobile tap-to-close backdrop) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="mainSidebar">
+        <div class="sidebar-logo">
+            <div class="sidebar-logo-icon">⚡</div>
+            <div class="sidebar-logo-text">PulseOS</div>
+            <div class="sidebar-logo-version">v3.0</div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="sidebar-section-label">COMMAND</div>
+            <a href="#" class="sidebar-item active" data-view="view-command">
+                <span class="sidebar-item-icon">🏠</span> Command Center
+            </a>
+            <a href="#" class="sidebar-item" data-view="view-agents">
+                <span class="sidebar-item-icon">🤖</span> AI Agents
+            </a>
+            <a href="#" class="sidebar-item" data-view="view-twin">
+                <span class="sidebar-item-icon">🏟️</span> Digital Twin
+            </a>
+
+            <div class="sidebar-section-label">INTELLIGENCE</div>
+            <a href="#" class="sidebar-item" data-view="view-crowd">
+                <span class="sidebar-item-icon">👥</span> Crowd Intel
+            </a>
+            <a href="#" class="sidebar-item" data-view="view-transport">
+                <span class="sidebar-item-icon">🚇</span> Transport Hub
+            </a>
+            <a href="#" class="sidebar-item" data-view="view-access">
+                <span class="sidebar-item-icon">♿</span> Accessibility
+            </a>
+            <a href="#" class="sidebar-item" data-view="view-lang">
+                <span class="sidebar-item-icon">🌐</span> Multilingual
+            </a>
+
+            <div class="sidebar-section-label">OPERATIONS</div>
+            <a href="#" class="sidebar-item" data-view="view-sustain">
+                <span class="sidebar-item-icon">🌱</span> Sustainability
+            </a>
+            <a href="#" class="sidebar-item" data-view="view-emergency">
+                <span class="sidebar-item-icon">🚨</span> Emergency <span class="sidebar-item-badge red">3</span>
+            </a>
+            <a href="#" class="sidebar-item" data-view="view-analytics">
+                <span class="sidebar-item-icon">📊</span> Analytics
+            </a>
+            <a href="#" class="sidebar-item" data-view="view-timeline">
+                <span class="sidebar-item-icon">⏱️</span> Live Timeline
+            </a>
+
+            <div class="sidebar-section-label">MANAGEMENT</div>
+            <a href="#" class="sidebar-item" data-view="view-executive">
+                <span class="sidebar-item-icon">📈</span> Executive
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-user">
+                <!-- Using an inline style to simulate the avatar from previous mockups -->
+                <div id="user-avatar-initials" style="width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg, var(--blue), var(--cyan)); display:flex; align-items:center; justify-content:center; font-weight:700; color:white; font-size:14px; flex-shrink:0;">AR</div>
+                <div class="sidebar-user-info">
+                    <div class="sidebar-user-name">Alex Rivera</div>
+                    <div class="sidebar-user-role">Operations Manager</div>
+                </div>
+            </div>
+            <!-- Logout / Back to Home -->
+            <a href="index.html" class="sidebar-logout" title="Back to Home" aria-label="Sign out and return to home">
+                <span class="sidebar-logout-icon">⏻</span>
+                <span class="sidebar-logout-text">Sign Out</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- ============================================================
+             VIEW 1: COMMAND CENTER
+             ============================================================ -->
+        <div id="view-command" class="dashboard-view active">
+            <header class="view-header">
+                <div class="view-header-left">
+                    <h1 class="view-title">Command Center</h1>
+                    <p class="view-subtitle">FIFA World Cup 2026 — MetLife Stadium, New Jersey</p>
+                </div>
+                <div class="view-header-right">
+                    <div class="match-day-badge">Match Day 12</div>
+                    <div class="live-clock" id="live-clock">19:14:22</div>
+                </div>
+            </header>
+
+            <div class="stadium-overview">
+                <div class="stadium-overview-title">Stadium Overview</div>
+                <div class="stadium-svg-container" id="stadiumCanvasContainer">
+                    <canvas id="stadiumCanvas" width="1000" height="400"></canvas>
+                </div>
+                <div class="stadium-legend">
+                    <div class="stadium-legend-item"><div class="stadium-legend-dot" style="background:#10b981;"></div> Open Gates</div>
+                    <div class="stadium-legend-item"><div class="stadium-legend-dot" style="background:#ef4444;"></div> Congestion</div>
+                    <div class="stadium-legend-item"><div class="stadium-legend-dot" style="background:#06b6d4;"></div> Smooth Flow</div>
+                </div>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card glass-panel">
+                    <div class="metric-icon">👥</div>
+                    <div class="metric-title">Crowd Density</div>
+                    <div class="metric-value" id="cmd-crowd-val">73,241 <span class="metric-trend positive">↑ 2.3%</span></div>
+                    <div class="metric-subtitle">80,000 capacity</div>
+                    <div class="metric-mini-chart" id="sparkline-crowd"></div>
+                </div>
+                <div class="metric-card glass-panel">
+                    <div class="metric-icon">🚪</div>
+                    <div class="metric-title">Gate Status</div>
+                    <div class="metric-value" id="cmd-gate-val">6/8 Open</div>
+                    <div class="metric-status warning">Warning</div>
+                </div>
+                <div class="metric-card glass-panel">
+                    <div class="metric-icon">🅿️</div>
+                    <div class="metric-title">Parking</div>
+                    <div class="metric-value">87% Full</div>
+                    <div class="progress-bar metric-progress"><div class="progress-fill warning" style="width: 87%"></div></div>
+                </div>
+                <div class="metric-card glass-panel">
+                    <div class="metric-icon">🌤️</div>
+                    <div class="metric-title">Weather</div>
+                    <div class="metric-value" id="cmd-weather-val">24°C</div>
+                    <div class="metric-subtitle" id="cmd-weather-sub">Partly Cloudy</div>
+                </div>
+                <div class="metric-card glass-panel">
+                    <div class="metric-icon">🏥</div>
+                    <div class="metric-title">Medical Alerts</div>
+                    <div class="metric-value alert-text">3 Active</div>
+                    <div class="metric-pulse"></div>
+                </div>
+                <div class="metric-card glass-panel">
+                    <div class="metric-icon">🚇</div>
+                    <div class="metric-title">Metro Status</div>
+                    <div class="metric-value">Line A: 4min delay</div>
+                    <div class="metric-status warning">Delay</div>
+                </div>
+                <div class="metric-card glass-panel">
+                    <div class="metric-icon">🤝</div>
+                    <div class="metric-title">Volunteers</div>
+                    <div class="metric-value">342/400</div>
+                    <div class="progress-bar metric-progress"><div class="progress-fill positive" style="width: 85%"></div></div>
+                </div>
+                <div class="metric-card glass-panel">
+                    <div class="metric-icon">🛡️</div>
+                    <div class="metric-title">Security</div>
+                    <div class="metric-value">Level 2</div>
+                    <div class="metric-status warning">Elevated</div>
+                </div>
+            </div>
+
+            <div class="ai-command-panel glass-panel">
+                <div class="ai-header">
+                    <span class="ai-bot-icon">🤖</span>
+                    <h3>PulseOS AI Assistant</h3>
+                    <span class="status-dot green"></span> Online
+                </div>
+                <div class="ai-panel-body">
+                    <div class="ai-chat" id="ai-chat">
+                        <div class="ai-message">Good evening, Alex. Match Day 12 operations are running smoothly. Current crowd density is at 91.5% capacity. I've identified 2 areas requiring attention: Gate C congestion (predicted in 12 minutes) and a minor metro delay on Line A. I recommend opening Gate D preemptively. Shall I proceed?</div>
+                    </div>
+                    <div class="ai-input-wrapper">
+                        <input type="text" id="ai-input" placeholder="Ask PulseOS anything... (e.g., 'What should I do next?')">
+                        <button id="ai-send" class="ai-send-btn">→</button>
+                    </div>
+                    <div class="ai-quick-actions">
+                        <button class="ai-quick-pill" data-cmd="deploy volunteers">Deploy volunteers</button>
+                        <button class="ai-quick-pill" data-cmd="open gate d">Open Gate D</button>
+                        <button class="ai-quick-pill" data-cmd="generate report">Generate report</button>
+                        <button class="ai-quick-pill" data-cmd="check weather">Check weather</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             VIEW 2: AI AGENTS HUB
+             ============================================================ -->
+        <div id="view-agents" class="dashboard-view">
+            <header class="view-header">
+                <div class="view-header-left">
+                    <h1 class="view-title">AI Agents Hub</h1>
+                    <p class="view-subtitle">Six specialized agents monitoring your stadium in real-time</p>
+                </div>
+                <div class="view-header-right">
+                    <div class="agents-overall-status glass-panel" style="padding:8px 16px; display:flex; align-items:center; gap:8px; border-radius:12px;">
+                        <span class="status-dot green"></span>
+                        <span style="font-size:13px; font-weight:600;">6/6 Agents Active</span>
+                    </div>
+                </div>
+            </header>
+            <div class="agents-grid" id="agents-grid">
+                <!-- Populated by ai-agents.js -->
+            </div>
+        </div>
+
+        <!-- ============================================================
+             VIEW 3: DIGITAL TWIN
+             ============================================================ -->
+        <div id="view-twin" class="dashboard-view">
+            <header class="view-header">
+                <div class="view-header-left">
+                    <h1 class="view-title">Digital Twin</h1>
+                    <p class="view-subtitle">Real-time 3D model of MetLife Stadium — all systems visualized</p>
+                </div>
+                <div class="view-header-right">
+                    <div class="twin-layer-controls" id="twin-layer-controls" style="display:flex; gap:8px; flex-wrap:wrap;">
+                        <button class="twin-layer-btn active" data-layer="crowd">👥 Crowd</button>
+                        <button class="twin-layer-btn" data-layer="heatmap">🌡️ Heatmap</button>
+                        <button class="twin-layer-btn" data-layer="security">🛡️ Security</button>
+                        <button class="twin-layer-btn" data-layer="medical">🏥 Medical</button>
+                        <button class="twin-layer-btn" data-layer="volunteers">🤝 Volunteers</button>
+                    </div>
+                </div>
+            </header>
+
+            <div class="glass-panel" style="padding: 24px; margin-bottom: 24px; position:relative; overflow:hidden;">
+                <div style="position:absolute; top:0; left:0; right:0; height:2px; background: linear-gradient(90deg, var(--cyan), var(--purple), var(--blue));"></div>
+                <canvas id="twin-canvas" style="width:100%; height:540px; display:block;"></canvas>
+            </div>
+
+            <div class="metrics-grid" style="grid-template-columns: repeat(4, 1fr);">
+                <div class="metric-card glass-panel">
+                    <div class="metric-icon">🟢</div>
+                    <div class="metric-title">Open Gates</div>
+                    <div class="metric-value">6 / 8</div>
+                    <div class="metric-subtitle">Gates A,B,D,E,F,G open</div>
+                </div>
+                <div class="metric-card glass-panel">
+                    <div class="metric-icon">🌡️</div>
+                    <div class="metric-title">Peak Density Zone</div>
+                    <div class="metric-value" id="twin-peak-zone">Section C3</div>
+                    <div class="metric-status warning">High</div>
+                </div>
+                <div class="metric-card glass-panel">
+                    <div class="metric-icon">📍</div>
+                    <div class="metric-title">Tracked Points</div>
+                    <div class="metric-value">180</div>
+                    <div class="metric-subtitle">crowd particle simulation</div>
+                </div>
+                <div class="metric-card glass-panel">
+                    <div class="metric-icon">⚡</div>
+                    <div class="metric-title">Render FPS</div>
+                    <div class="metric-value" id="twin-fps">60</div>
+                    <div class="metric-status good">Optimal</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             VIEW 4: CROWD INTELLIGENCE
+             ============================================================ -->
+        <div id="view-crowd" class="dashboard-view">
+            <header class="view-header">
+                <div class="view-header-left">
+                    <h1 class="view-title">Crowd Intelligence</h1>
+                    <p class="view-subtitle">AI-powered crowd flow prediction and real-time density mapping</p>
+                </div>
+            </header>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px;">
+                <!-- Gate Flow Table -->
+                <div class="glass-panel" style="padding:24px; position:relative; overflow:hidden;">
+                    <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--blue),var(--cyan));"></div>
+                    <h3 style="font-size:15px; font-weight:700; margin-bottom:16px; color:var(--text-primary);">🚪 Gate Flow Status</h3>
+                    <div id="crowd-gate-table" style="display:flex; flex-direction:column; gap:10px;">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Crowd Distribution Chart -->
+                <div class="glass-panel" style="padding:24px; position:relative; overflow:hidden;">
+                    <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--purple),var(--blue));"></div>
+                    <h3 style="font-size:15px; font-weight:700; margin-bottom:16px; color:var(--text-primary);">📊 Crowd Distribution by Level</h3>
+                    <div id="crowd-level-chart" style="height:200px;"></div>
+                    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px;">
+                        <div style="text-align:center;">
+                            <div style="font-size:22px; font-weight:800; color:var(--blue);">94%</div>
+                            <div style="font-size:11px; color:var(--text-secondary);">Level 100</div>
+                        </div>
+                        <div style="text-align:center;">
+                            <div style="font-size:22px; font-weight:800; color:var(--cyan);">88%</div>
+                            <div style="font-size:11px; color:var(--text-secondary);">Level 200</div>
+                        </div>
+                        <div style="text-align:center;">
+                            <div style="font-size:22px; font-weight:800; color:var(--purple);">76%</div>
+                            <div style="font-size:11px; color:var(--text-secondary);">Level 300</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Crowd Predictions -->
+            <div class="glass-panel" style="padding:24px; margin-bottom:24px; position:relative; overflow:hidden;">
+                <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--amber),var(--red));"></div>
+                <h3 style="font-size:15px; font-weight:700; margin-bottom:16px; color:var(--text-primary);">🔮 AI Crowd Predictions — Next 30 Minutes</h3>
+                <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:16px;">
+                    <div style="background:var(--red-subtle); border:1px solid var(--red-glow); border-radius:12px; padding:16px;">
+                        <div style="font-size:12px; color:var(--red-light); font-weight:600; margin-bottom:8px;">⚠️ HIGH RISK</div>
+                        <div style="font-size:14px; font-weight:700; color:var(--text-primary); margin-bottom:4px;">Gate C Congestion</div>
+                        <div style="font-size:12px; color:var(--text-secondary);">Predicted in 12 min. Flow rate 340/min vs 280 optimal. Recommend opening Gate D.</div>
+                    </div>
+                    <div style="background:var(--amber-subtle); border:1px solid var(--amber-glow); border-radius:12px; padding:16px;">
+                        <div style="font-size:12px; color:var(--amber-light); font-weight:600; margin-bottom:8px;">⚡ WATCH</div>
+                        <div style="font-size:14px; font-weight:700; color:var(--text-primary); margin-bottom:4px;">Half-time Surge</div>
+                        <div style="font-size:12px; color:var(--text-secondary);">Predicted in ~45 min. Food court capacity at 340% normal. Pre-position staff.</div>
+                    </div>
+                    <div style="background:var(--green-subtle); border:1px solid var(--green-glow); border-radius:12px; padding:16px;">
+                        <div style="font-size:12px; color:var(--green-light); font-weight:600; margin-bottom:8px;">✅ NOMINAL</div>
+                        <div style="font-size:14px; font-weight:700; color:var(--text-primary); margin-bottom:4px;">Exit Strategy Ready</div>
+                        <div style="font-size:12px; color:var(--text-secondary);">Staggered exit reduces post-match exit by 18 min. Level 100 releases first.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Real-time crowd flow chart -->
+            <div class="glass-panel" style="padding:24px; position:relative; overflow:hidden;">
+                <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--cyan),var(--green));"></div>
+                <h3 style="font-size:15px; font-weight:700; margin-bottom:16px;">📈 Crowd Ingress — Last 60 Minutes</h3>
+                <div id="crowd-flow-chart" style="height:200px;"></div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             VIEW 5: TRANSPORT HUB
+             ============================================================ -->
+        <div id="view-transport" class="dashboard-view">
+            <header class="view-header">
+                <div class="view-header-left">
+                    <h1 class="view-title">Transport Hub</h1>
+                    <p class="view-subtitle">Real-time coordination of metro, buses, rideshare, and parking</p>
+                </div>
+            </header>
+
+            <!-- Transport status cards -->
+            <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:16px; margin-bottom:24px;">
+                <div class="glass-panel" style="padding:20px; position:relative; overflow:hidden; border-top:2px solid var(--red);">
+                    <div style="font-size:28px; margin-bottom:8px;">🚇</div>
+                    <div style="font-size:13px; color:var(--text-secondary); margin-bottom:4px;">Metro Line A</div>
+                    <div style="font-size:20px; font-weight:800; color:var(--red-light);">4 min delay</div>
+                    <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Giants Stadium Station</div>
+                    <div style="font-size:10px; background:var(--red-subtle); color:var(--red-light); padding:2px 8px; border-radius:20px; display:inline-block; margin-top:6px;">DELAYED</div>
+                </div>
+                <div class="glass-panel" style="padding:20px; position:relative; overflow:hidden; border-top:2px solid var(--green);">
+                    <div style="font-size:28px; margin-bottom:8px;">🚇</div>
+                    <div style="font-size:13px; color:var(--text-secondary); margin-bottom:4px;">Metro Line B</div>
+                    <div style="font-size:20px; font-weight:800; color:var(--green-light);">On time</div>
+                    <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Meadowlands Station</div>
+                    <div style="font-size:10px; background:var(--green-subtle); color:var(--green-light); padding:2px 8px; border-radius:20px; display:inline-block; margin-top:6px;">OPERATIONAL</div>
+                </div>
+                <div class="glass-panel" style="padding:20px; position:relative; overflow:hidden; border-top:2px solid var(--blue);">
+                    <div style="font-size:28px; margin-bottom:8px;">🚌</div>
+                    <div style="font-size:13px; color:var(--text-secondary); margin-bottom:4px;">Shuttle Bus Fleet</div>
+                    <div style="font-size:20px; font-weight:800; color:var(--blue-light);">24 Active</div>
+                    <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Routes B3, B7, B12, B14</div>
+                    <div style="font-size:10px; background:var(--blue-subtle); color:var(--blue-light); padding:2px 8px; border-radius:20px; display:inline-block; margin-top:6px;">RUNNING</div>
+                </div>
+                <div class="glass-panel" style="padding:20px; position:relative; overflow:hidden; border-top:2px solid var(--amber);">
+                    <div style="font-size:28px; margin-bottom:8px;">🅿️</div>
+                    <div style="font-size:13px; color:var(--text-secondary); margin-bottom:4px;">Stadium Parking</div>
+                    <div style="font-size:20px; font-weight:800; color:var(--amber-light);">87% Full</div>
+                    <div style="font-size:11px; color:var(--text-secondary); margin-top:4px;">~2,400 spaces remaining</div>
+                    <div style="font-size:10px; background:var(--amber-subtle); color:var(--amber-light); padding:2px 8px; border-radius:20px; display:inline-block; margin-top:6px;">FILLING</div>
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px;">
+                <!-- Parking Lots -->
+                <div class="glass-panel" style="padding:24px; position:relative; overflow:hidden;">
+                    <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--amber),var(--red));"></div>
+                    <h3 style="font-size:15px; font-weight:700; margin-bottom:16px;">🅿️ Parking Lots Status</h3>
+                    <div style="display:flex; flex-direction:column; gap:12px;">
+                        <div style="display:flex; align-items:center; gap:12px;">
+                            <span style="width:60px; font-size:12px; color:var(--text-secondary);">Lot A</span>
+                            <div style="flex:1; height:8px; background:var(--bg-elevated); border-radius:4px; overflow:hidden;">
+                                <div style="width:95%; height:100%; background:var(--red); border-radius:4px;"></div>
+                            </div>
+                            <span style="width:35px; font-size:12px; color:var(--red-light); text-align:right;">95%</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:12px;">
+                            <span style="width:60px; font-size:12px; color:var(--text-secondary);">Lot B</span>
+                            <div style="flex:1; height:8px; background:var(--bg-elevated); border-radius:4px; overflow:hidden;">
+                                <div style="width:88%; height:100%; background:var(--amber); border-radius:4px;"></div>
+                            </div>
+                            <span style="width:35px; font-size:12px; color:var(--amber-light); text-align:right;">88%</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:12px;">
+                            <span style="width:60px; font-size:12px; color:var(--text-secondary);">Lot C</span>
+                            <div style="flex:1; height:8px; background:var(--bg-elevated); border-radius:4px; overflow:hidden;">
+                                <div style="width:72%; height:100%; background:var(--blue); border-radius:4px;"></div>
+                            </div>
+                            <span style="width:35px; font-size:12px; color:var(--blue-light); text-align:right;">72%</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:12px;">
+                            <span style="width:60px; font-size:12px; color:var(--text-secondary);">Lot D</span>
+                            <div style="flex:1; height:8px; background:var(--bg-elevated); border-radius:4px; overflow:hidden;">
+                                <div style="width:65%; height:100%; background:var(--cyan); border-radius:4px;"></div>
+                            </div>
+                            <span style="width:35px; font-size:12px; color:var(--cyan-light); text-align:right;">65%</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:12px;">
+                            <span style="width:60px; font-size:12px; color:var(--text-secondary);">Remote</span>
+                            <div style="flex:1; height:8px; background:var(--bg-elevated); border-radius:4px; overflow:hidden;">
+                                <div style="width:42%; height:100%; background:var(--green); border-radius:4px;"></div>
+                            </div>
+                            <span style="width:35px; font-size:12px; color:var(--green-light); text-align:right;">42%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rideshare & Taxi -->
+                <div class="glass-panel" style="padding:24px; position:relative; overflow:hidden;">
+                    <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--purple),var(--blue));"></div>
+                    <h3 style="font-size:15px; font-weight:700; margin-bottom:16px;">🚗 Rideshare & Pickup Zones</h3>
+                    <div style="display:flex; flex-direction:column; gap:12px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:10px; background:var(--bg-elevated); border-radius:10px;">
+                            <div>
+                                <div style="font-size:13px; font-weight:600;">Zone Alpha (North)</div>
+                                <div style="font-size:11px; color:var(--text-secondary);">Uber / Lyft pickup</div>
+                            </div>
+                            <div style="text-align:right;">
+                                <div style="font-size:16px; font-weight:700; color:var(--green-light);">12 min ETA</div>
+                                <div style="font-size:10px; color:var(--green-light);">34 cars queued</div>
+                            </div>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:10px; background:var(--bg-elevated); border-radius:10px;">
+                            <div>
+                                <div style="font-size:13px; font-weight:600;">Zone Beta (East)</div>
+                                <div style="font-size:11px; color:var(--text-secondary);">Taxi / accessible</div>
+                            </div>
+                            <div style="text-align:right;">
+                                <div style="font-size:16px; font-weight:700; color:var(--amber-light);">18 min ETA</div>
+                                <div style="font-size:10px; color:var(--amber-light);">52 cars queued</div>
+                            </div>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:10px; background:var(--bg-elevated); border-radius:10px;">
+                            <div>
+                                <div style="font-size:13px; font-weight:600;">VIP Drop-off</div>
+                                <div style="font-size:11px; color:var(--text-secondary);">Gate H — restricted</div>
+                            </div>
+                            <div style="text-align:right;">
+                                <div style="font-size:16px; font-weight:700; color:var(--cyan-light);">Immediate</div>
+                                <div style="font-size:10px; color:var(--cyan-light);">Lane clear</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Transport Recommendations -->
+            <div class="glass-panel" style="padding:24px; position:relative; overflow:hidden;">
+                <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--cyan),var(--blue));"></div>
+                <h3 style="font-size:15px; font-weight:700; margin-bottom:16px;">🤖 AI Transport Recommendations</h3>
+                <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">
+                    <div style="padding:12px; background:var(--blue-subtle); border:1px solid var(--blue-glow); border-radius:10px;">
+                        <div style="font-size:12px; color:var(--blue-light); font-weight:600; margin-bottom:4px;">Metro Delay Mitigation</div>
+                        <div style="font-size:11px; color:var(--text-secondary);">Redirecting wayfinding signs to Bus Route B7. 340 fans re-routed. ETA improvement: 6 min.</div>
+                    </div>
+                    <div style="padding:12px; background:var(--green-subtle); border:1px solid var(--green-glow); border-radius:10px;">
+                        <div style="font-size:12px; color:var(--green-light); font-weight:600; margin-bottom:4px;">Shuttle Frequency +25%</div>
+                        <div style="font-size:11px; color:var(--text-secondary);">Deployed 6 additional buses. Next shuttle from remote lots: 4 minutes. Capacity: 240 fans.</div>
+                    </div>
+                    <div style="padding:12px; background:var(--amber-subtle); border:1px solid var(--amber-glow); border-radius:10px;">
+                        <div style="font-size:12px; color:var(--amber-light); font-weight:600; margin-bottom:4px;">Lot A Near Capacity</div>
+                        <div style="font-size:11px; color:var(--text-secondary);">Digital signs redirecting arrivals to Lot C & D. Estimated 15 min until Lot A closes.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             VIEW 6: ACCESSIBILITY
+             ============================================================ -->
+        <div id="view-access" class="dashboard-view">
+            <header class="view-header">
+                <div class="view-header-left">
+                    <h1 class="view-title">Accessibility Hub</h1>
+                    <p class="view-subtitle">AI-powered inclusive experience for every fan at MetLife Stadium</p>
+                </div>
+            </header>
+
+            <!-- KPI cards -->
+            <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px;">
+                <div class="glass-panel" style="padding:20px; border-top:2px solid var(--green);">
+                    <div style="font-size:28px; margin-bottom:8px;">♿</div>
+                    <div style="font-size:13px; color:var(--text-secondary);">Accessible Fans</div>
+                    <div style="font-size:24px; font-weight:800; color:var(--green-light);">1,847</div>
+                    <div style="font-size:11px; color:var(--text-secondary);">in venue today</div>
+                </div>
+                <div class="glass-panel" style="padding:20px; border-top:2px solid var(--blue);">
+                    <div style="font-size:28px; margin-bottom:8px;">🦽</div>
+                    <div style="font-size:13px; color:var(--text-secondary);">Escort Requests</div>
+                    <div style="font-size:24px; font-weight:800; color:var(--blue-light);">4 Pending</div>
+                    <div style="font-size:11px; color:var(--text-secondary);">avg wait: 2.3 min</div>
+                </div>
+                <div class="glass-panel" style="padding:20px; border-top:2px solid var(--cyan);">
+                    <div style="font-size:28px; margin-bottom:8px;">🅿️</div>
+                    <div style="font-size:13px; color:var(--text-secondary);">Accessible Parking</div>
+                    <div style="font-size:24px; font-weight:800; color:var(--cyan-light);">82 / 120</div>
+                    <div style="font-size:11px; color:var(--text-secondary);">spaces filled</div>
+                </div>
+                <div class="glass-panel" style="padding:20px; border-top:2px solid var(--purple);">
+                    <div style="font-size:28px; margin-bottom:8px;">⭐</div>
+                    <div style="font-size:13px; color:var(--text-secondary);">Accessibility Score</div>
+                    <div style="font-size:24px; font-weight:800; color:var(--purple-light);">98/100</div>
+                    <div style="font-size:11px; color:var(--text-secondary);">FIFA certified</div>
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px;">
+                <!-- Escort Request Queue -->
+                <div class="glass-panel" style="padding:24px; position:relative; overflow:hidden;">
+                    <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--blue),var(--cyan));"></div>
+                    <h3 style="font-size:15px; font-weight:700; margin-bottom:16px;">🦽 Escort Request Queue</h3>
+                    <div style="display:flex; flex-direction:column; gap:10px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:12px; background:var(--amber-subtle); border:1px solid var(--amber-glow); border-radius:10px;">
+                            <div>
+                                <div style="font-size:13px; font-weight:600; color:var(--text-primary);">Gate A → Section 112</div>
+                                <div style="font-size:11px; color:var(--text-secondary);">Wheelchair assistance • Fan #4821</div>
+                            </div>
+                            <div style="text-align:right;">
+                                <div style="font-size:12px; color:var(--amber-light);">2 min ago</div>
+                                <div style="font-size:10px; background:var(--amber-subtle); color:var(--amber-light); padding:2px 8px; border-radius:20px;">PENDING</div>
+                            </div>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:12px; background:var(--amber-subtle); border:1px solid var(--amber-glow); border-radius:10px;">
+                            <div>
+                                <div style="font-size:13px; font-weight:600; color:var(--text-primary);">Parking Lot A → Gate C</div>
+                                <div style="font-size:11px; color:var(--text-secondary);">Mobility aid • Fan #7234</div>
+                            </div>
+                            <div style="text-align:right;">
+                                <div style="font-size:12px; color:var(--amber-light);">4 min ago</div>
+                                <div style="font-size:10px; background:var(--amber-subtle); color:var(--amber-light); padding:2px 8px; border-radius:20px;">PENDING</div>
+                            </div>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:12px; background:var(--blue-subtle); border:1px solid var(--blue-glow); border-radius:10px;">
+                            <div>
+                                <div style="font-size:13px; font-weight:600; color:var(--text-primary);">Concourse B → Section 201</div>
+                                <div style="font-size:11px; color:var(--text-secondary);">Guide assistance • Fan #3910</div>
+                            </div>
+                            <div style="text-align:right;">
+                                <div style="font-size:12px; color:var(--blue-light);">1 min ago</div>
+                                <div style="font-size:10px; background:var(--blue-subtle); color:var(--blue-light); padding:2px 8px; border-radius:20px;">EN ROUTE</div>
+                            </div>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:12px; background:var(--green-subtle); border:1px solid var(--green-glow); border-radius:10px;">
+                            <div>
+                                <div style="font-size:13px; font-weight:600; color:var(--text-primary);">Medical Station → Exit D</div>
+                                <div style="font-size:11px; color:var(--text-secondary);">Visual impairment • Fan #6018</div>
+                            </div>
+                            <div style="text-align:right;">
+                                <div style="font-size:12px; color:var(--green-light);">5 min ago</div>
+                                <div style="font-size:10px; background:var(--green-subtle); color:var(--green-light); padding:2px 8px; border-radius:20px;">COMPLETED</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accessibility Services -->
+                <div class="glass-panel" style="padding:24px; position:relative; overflow:hidden;">
+                    <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--purple),var(--blue));"></div>
+                    <h3 style="font-size:15px; font-weight:700; margin-bottom:16px;">♿ Accessibility Services Status</h3>
+                    <div style="display:flex; flex-direction:column; gap:12px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="font-size:13px; color:var(--text-primary);">🦽 Wheelchair Rentals</span>
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <div style="width:80px; height:6px; background:var(--bg-elevated); border-radius:3px;"><div style="width:60%; height:100%; background:var(--green); border-radius:3px;"></div></div>
+                                <span style="font-size:12px; color:var(--green-light);">12 avail</span>
+                            </div>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="font-size:13px; color:var(--text-primary);">👂 Hearing Loop Zones</span>
+                            <span style="font-size:12px; color:var(--green-light);">18/18 Active</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="font-size:13px; color:var(--text-primary);">👁️ Audio Description</span>
+                            <span style="font-size:12px; color:var(--green-light);">Available — 4 headsets</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="font-size:13px; color:var(--text-primary);">🧩 Sensory Room</span>
+                            <span style="font-size:12px; color:var(--cyan-light);">3/8 occupied</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="font-size:13px; color:var(--text-primary);">🐕 Service Animals</span>
+                            <span style="font-size:12px; color:var(--green-light);">14 registered today</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="font-size:13px; color:var(--text-primary);">🚻 Accessible Restrooms</span>
+                            <span style="font-size:12px; color:var(--green-light);">24/24 Operational</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="font-size:13px; color:var(--text-primary);">🛗 Elevators</span>
+                            <span style="font-size:12px; color:var(--amber-light);">11/12 — Elevator C3 maintenance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Accessibility Insights -->
+            <div class="glass-panel" style="padding:24px; position:relative; overflow:hidden;">
+                <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--green),var(--cyan));"></div>
+                <h3 style="font-size:15px; font-weight:700; margin-bottom:12px;">🤖 AI Accessibility Insights</h3>
+                <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">
+                    <div style="padding:12px; background:var(--green-subtle); border:1px solid var(--green-glow); border-radius:10px;">
+                        <div style="font-size:12px; color:var(--green-light); font-weight:600; margin-bottom:4px;">Volunteer Certification Match</div>
+                        <div style="font-size:11px; color:var(--text-secondary);">4 pending escort requests matched with 4 sign-language certified volunteers. Dispatch confirmed.</div>
+                    </div>
+                    <div style="padding:12px; background:var(--blue-subtle); border:1px solid var(--blue-glow); border-radius:10px;">
+                        <div style="font-size:12px; color:var(--blue-light); font-weight:600; margin-bottom:4px;">Family Zone Expansion</div>
+                        <div style="font-size:11px; color:var(--text-secondary);">Requests up 23%. Section 110 lower rows designated for families with mobility needs. Staff added.</div>
+                    </div>
+                    <div style="padding:12px; background:var(--purple-subtle); border:1px solid var(--purple-glow); border-radius:10px;">
+                        <div style="font-size:12px; color:var(--purple-light); font-weight:600; margin-bottom:4px;">Sensory Room Near Capacity</div>
+                        <div style="font-size:11px; color:var(--text-secondary);">Room 2 at 3/8 capacity. Pre-booking recommended for remaining 2 spots in next 30 min window.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             VIEW 7: MULTILINGUAL
+             ============================================================ -->
+        <div id="view-lang" class="dashboard-view">
+            <header class="view-header">
+                <div class="view-header-left">
+                    <h1 class="view-title">Multilingual Hub</h1>
+                    <p class="view-subtitle">AI translation and communication for 48 languages across the stadium</p>
+                </div>
+            </header>
+
+            <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px;">
+                <div class="glass-panel" style="padding:20px; border-top:2px solid var(--blue);">
+                    <div style="font-size:28px; margin-bottom:8px;">🌐</div>
+                    <div style="font-size:13px; color:var(--text-secondary);">Languages Supported</div>
+                    <div style="font-size:24px; font-weight:800; color:var(--blue-light);">48</div>
+                    <div style="font-size:11px; color:var(--text-secondary);">including sign language</div>
+                </div>
+                <div class="glass-panel" style="padding:20px; border-top:2px solid var(--green);">
+                    <div style="font-size:28px; margin-bottom:8px;">💬</div>
+                    <div style="font-size:13px; color:var(--text-secondary);">Active Translations</div>
+                    <div style="font-size:24px; font-weight:800; color:var(--green-light);">1,247</div>
+                    <div style="font-size:11px; color:var(--text-secondary);">requests this hour</div>
+                </div>
+                <div class="glass-panel" style="padding:20px; border-top:2px solid var(--cyan);">
+                    <div style="font-size:28px; margin-bottom:8px;">⚡</div>
+                    <div style="font-size:13px; color:var(--text-secondary);">Avg Response Time</div>
+                    <div style="font-size:24px; font-weight:800; color:var(--cyan-light);">0.3s</div>
+                    <div style="font-size:11px; color:var(--text-secondary);">near real-time</div>
+                </div>
+                <div class="glass-panel" style="padding:20px; border-top:2px solid var(--purple);">
+                    <div style="font-size:28px; margin-bottom:8px;">🎯</div>
+                    <div style="font-size:13px; color:var(--text-secondary);">Translation Accuracy</div>
+                    <div style="font-size:24px; font-weight:800; color:var(--purple-light);">99.1%</div>
+                    <div style="font-size:11px; color:var(--text-secondary);">AI verified</div>
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px;">
+                <!-- Top Languages -->
+                <div class="glass-panel" style="padding:24px; position:relative; overflow:hidden;">
+                    <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--blue),var(--cyan));"></div>
+                    <h3 style="font-size:15px; font-weight:700; margin-bottom:16px;">🌍 Top Languages Today</h3>
+                    <div style="display:flex; flex-direction:column; gap:10px;">
+                        <div style="display:flex; align-items:center; gap:12px;">
+                            <span style="font-size:16px;">🇧🇷</span>
+                            <span style="width:90px; font-size:13px; font-weight:600;">Portuguese</span>
+                            <div style="flex:1; height:8px; background:var(--bg-elevated); border-radius:4px; overflow:hidden;"><div style="width:88%; height:100%; background:var(--green); border-radius:4px;"></div></div>
+                            <span style="width:40px; font-size:12px; color:var(--green-light); text-align:right;">4,218</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:12px;">
+                            <span style="font-size:16px;">🇩🇪</span>
+                            <span style="width:90px; font-size:13px; font-weight:600;">German</span>
+                            <div style="flex:1; height:8px; background:var(--bg-elevated); border-radius:4px; overflow:hidden;"><div style="width:72%; height:100%; background:var(--blue); border-radius:4px;"></div></div>
+                            <span style="width:40px; font-size:12px; color:var(--blue-light); text-align:right;">3,451</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:12px;">
+                            <span style="font-size:16px;">🇪🇸</span>
+                            <span style="width:90px; font-size:13px; font-weight:600;">Spanish</span>
+                            <div style="flex:1; height:8px; background:var(--bg-elevated); border-radius:4px; overflow:hidden;"><div style="width:65%; height:100%; background:var(--red); border-radius:4px;"></div></div>
+                            <span style="width:40px; font-size:12px; color:var(--red-light); text-align:right;">3,120</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:12px;">
+                            <span style="font-size:16px;">🇫🇷</span>
+                            <span style="width:90px; font-size:13px; font-weight:600;">French</span>
+                            <div style="flex:1; height:8px; background:var(--bg-elevated); border-radius:4px; overflow:hidden;"><div style="width:48%; height:100%; background:var(--cyan); border-radius:4px;"></div></div>
+                            <span style="width:40px; font-size:12px; color:var(--cyan-light); text-align:right;">2,302</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:12px;">
+                            <span style="font-size:16px;">🇯🇵</span>
+                            <span style="width:90px; font-size:13px; font-weight:600;">Japanese</span>
+                            <div style="flex:1; height:8px; background:var(--bg-elevated); border-radius:4px; overflow:hidden;"><div style="width:38%; height:100%; background:var(--purple); border-radius:4px;"></div></div>
+                            <span style="width:40px; font-size:12px; color:var(--purple-light); text-align:right;">1,820</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:12px;">
+                            <span style="font-size:16px;">🇸🇦</span>
+                            <span style="width:90px; font-size:13px; font-weight:600;">Arabic</span>
+                            <div style="flex:1; height:8px; background:var(--bg-elevated); border-radius:4px; overflow:hidden;"><div style="width:30%; height:100%; background:var(--amber); border-radius:4px;"></div></div>
+                            <span style="width:40px; font-size:12px; color:var(--amber-light); text-align:right;">1,441</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Staff Translation Requests -->
+                <div class="glass-panel" style="padding:24px; position:relative; overflow:hidden;">
+                    <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--amber),var(--red));"></div>
+                    <h3 style="font-size:15px; font-weight:700; margin-bottom:16px;">📟 Live Staff Translation Requests</h3>
+                    <div style="display:flex; flex-direction:column; gap:10px;" id="lang-request-feed">
+                        <div style="display:flex; gap:10px; align-items:flex-start; padding:10px; background:var(--bg-elevated); border-radius:10px;">
+                            <span style="font-size:18px;">🇯🇵</span>
+                            <div>
+                                <div style="font-size:12px; font-weight:600; color:var(--text-primary);">Japanese fan at Gate B — lost items inquiry</div>
+                                <div style="font-size:11px; color:var(--green-light); margin-top:2px;">✅ AI translated & responded in 0.2s</div>
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:10px; align-items:flex-start; padding:10px; background:var(--bg-elevated); border-radius:10px;">
+                            <span style="font-size:18px;">🇸🇦</span>
+                            <div>
+                                <div style="font-size:12px; font-weight:600; color:var(--text-primary);">Arabic speaker needs medical assistance — Sec 214</div>
+                                <div style="font-size:11px; color:var(--amber-light); margin-top:2px;">⚡ Medic dispatched with Arabic-speaking volunteer</div>
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:10px; align-items:flex-start; padding:10px; background:var(--bg-elevated); border-radius:10px;">
+                            <span style="font-size:18px;">🇩🇪</span>
+                            <div>
+                                <div style="font-size:12px; font-weight:600; color:var(--text-primary);">German group requesting food recommendations</div>
+                                <div style="font-size:11px; color:var(--green-light); margin-top:2px;">✅ 5 nearby options sent to fan app in German</div>
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:10px; align-items:flex-start; padding:10px; background:var(--bg-elevated); border-radius:10px;">
+                            <span style="font-size:18px;">🇰🇷</span>
+                            <div>
+                                <div style="font-size:12px; font-weight:600; color:var(--text-primary);">Korean fan — seat location query Section 234</div>
+                                <div style="font-size:11px; color:var(--green-light); margin-top:2px;">✅ Wayfinding route sent to phone in Korean</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Signage Status -->
+            <div class="glass-panel" style="padding:24px; position:relative; overflow:hidden;">
+                <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--green),var(--blue));"></div>
+                <h3 style="font-size:15px; font-weight:700; margin-bottom:12px;">📺 Digital Signage Language Status</h3>
+                <div style="display:grid; grid-template-columns:repeat(6,1fr); gap:10px;">
+                    <div style="text-align:center; padding:12px; background:var(--bg-elevated); border-radius:10px;">
+                        <div style="font-size:20px;">🇺🇸</div>
+                        <div style="font-size:10px; color:var(--green-light); margin-top:4px;">EN ✓</div>
+                    </div>
+                    <div style="text-align:center; padding:12px; background:var(--bg-elevated); border-radius:10px;">
+                        <div style="font-size:20px;">🇧🇷</div>
+                        <div style="font-size:10px; color:var(--green-light); margin-top:4px;">PT ✓</div>
+                    </div>
+                    <div style="text-align:center; padding:12px; background:var(--bg-elevated); border-radius:10px;">
+                        <div style="font-size:20px;">🇩🇪</div>
+                        <div style="font-size:10px; color:var(--green-light); margin-top:4px;">DE ✓</div>
+                    </div>
+                    <div style="text-align:center; padding:12px; background:var(--bg-elevated); border-radius:10px;">
+                        <div style="font-size:20px;">🇪🇸</div>
+                        <div style="font-size:10px; color:var(--green-light); margin-top:4px;">ES ✓</div>
+                    </div>
+                    <div style="text-align:center; padding:12px; background:var(--bg-elevated); border-radius:10px;">
+                        <div style="font-size:20px;">🇫🇷</div>
+                        <div style="font-size:10px; color:var(--green-light); margin-top:4px;">FR ✓</div>
+                    </div>
+                    <div style="text-align:center; padding:12px; background:var(--bg-elevated); border-radius:10px;">
+                        <div style="font-size:20px;">🇸🇦</div>
+                        <div style="font-size:10px; color:var(--green-light); margin-top:4px;">AR ✓</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             VIEW 8: SUSTAINABILITY
+             ============================================================ -->
+        <div id="view-sustain" class="dashboard-view">
+            <header class="view-header">
+                <div class="view-header-left">
+                    <h1 class="view-title">Sustainability</h1>
+                    <p class="view-subtitle">Real-time environmental monitoring — tracking FIFA's net-zero commitment</p>
+                </div>
+            </header>
+
+            <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px;">
+                <div class="glass-panel" style="padding:20px; border-top:2px solid var(--green);">
+                    <div style="font-size:28px; margin-bottom:8px;">☀️</div>
+                    <div style="font-size:13px; color:var(--text-secondary);">Solar Generation</div>
+                    <div style="font-size:24px; font-weight:800; color:var(--green-light);" id="sustain-solar">842 kW</div>
+                    <div style="font-size:11px; color:var(--green-light);">↑ 12% above forecast</div>
+                </div>
+                <div class="glass-panel" style="padding:20px; border-top:2px solid var(--blue);">
+                    <div style="font-size:28px; margin-bottom:8px;">⚡</div>
+                    <div style="font-size:13px; color:var(--text-secondary);">Grid Usage</div>
+                    <div style="font-size:24px; font-weight:800; color:var(--blue-light);" id="sustain-grid">2.4 MW</div>
+                    <div style="font-size:11px; color:var(--text-secondary);">200 kW below target</div>
+                </div>
+                <div class="glass-panel" style="padding:20px; border-top:2px solid var(--cyan);">
+                    <div style="font-size:28px; margin-bottom:8px;">💧</div>
+                    <div style="font-size:13px; color:var(--text-secondary);">Water Recycled</div>
+                    <div style="font-size:24px; font-weight:800; color:var(--cyan-light);">3,200 L/hr</div>
+                    <div style="font-size:11px; color:var(--text-secondary);">94% efficiency</div>
+                </div>
+                <div class="glass-panel" style="padding:20px; border-top:2px solid var(--amber);">
+                    <div style="font-size:28px; margin-bottom:8px;">🌿</div>
+                    <div style="font-size:13px; color:var(--text-secondary);">Carbon Today</div>
+                    <div style="font-size:24px; font-weight:800; color:var(--amber-light);">127 kg CO₂/hr</div>
+                    <div style="font-size:11px; color:var(--green-light);">↓ 15% below target</div>
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px;">
+                <!-- Energy Mix -->
+                <div class="glass-panel" style="padding:24px; position:relative; overflow:hidden;">
+                    <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--green),var(--blue));"></div>
+                    <h3 style="font-size:15px; font-weight:700; margin-bottom:16px;">⚡ Energy Mix</h3>
+                    <div id="sustain-energy-chart" style="height:180px;"></div>
+                    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:16px; text-align:center;">
+                        <div>
+                            <div style="font-size:20px; font-weight:800; color:var(--green-light);">34%</div>
+                            <div style="font-size:11px; color:var(--text-secondary);">Solar</div>
+                        </div>
+                        <div>
+                            <div style="font-size:20px; font-weight:800; color:var(--blue-light);">52%</div>
+                            <div style="font-size:11px; color:var(--text-secondary);">Grid</div>
+                        </div>
+                        <div>
+                            <div style="font-size:20px; font-weight:800; color:var(--purple-light);">14%</div>
+                            <div style="font-size:11px; color:var(--text-secondary);">Battery</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Waste Tracking -->
+                <div class="glass-panel" style="padding:24px; position:relative; overflow:hidden;">
+                    <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--amber),var(--green));"></div>
+                    <h3 style="font-size:15px; font-weight:700; margin-bottom:16px;">♻️ Waste Tracking</h3>
+                    <div style="display:flex; flex-direction:column; gap:12px;">
+                        <div>
+                            <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                                <span style="font-size:12px; color:var(--text-secondary);">Recycling Rate</span>
+                                <span style="font-size:12px; color:var(--green-light); font-weight:600;">78% ↑ (target: 75%)</span>
+                            </div>
+                            <div style="height:8px; background:var(--bg-elevated); border-radius:4px; overflow:hidden;"><div style="width:78%; height:100%; background:var(--green); border-radius:4px;"></div></div>
+                        </div>
+                        <div>
+                            <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                                <span style="font-size:12px; color:var(--text-secondary);">Zone D Bin Capacity</span>
+                                <span style="font-size:12px; color:var(--red-light); font-weight:600;">92% — Collection dispatched</span>
+                            </div>
+                            <div style="height:8px; background:var(--bg-elevated); border-radius:4px; overflow:hidden;"><div style="width:92%; height:100%; background:var(--red); border-radius:4px;"></div></div>
+                        </div>
+                        <div>
+                            <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                                <span style="font-size:12px; color:var(--text-secondary);">Food Waste to Compost</span>
+                                <span style="font-size:12px; color:var(--amber-light); font-weight:600;">68 kg / 200 kg capacity</span>
+                            </div>
+                            <div style="height:8px; background:var(--bg-elevated); border-radius:4px; overflow:hidden;"><div style="width:34%; height:100%; background:var(--amber); border-radius:4px;"></div></div>
+                        </div>
+                        <div>
+                            <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                                <span style="font-size:12px; color:var(--text-secondary);">Single-Use Plastic</span>
+                                <span style="font-size:12px; color:var(--green-light); font-weight:600;">0% — Zero policy enforced</span>
+                            </div>
+                            <div style="height:8px; background:var(--bg-elevated); border-radius:4px; overflow:hidden;"><div style="width:0%; height:100%; background:var(--green); border-radius:4px;"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sustainability Score -->
+            <div class="glass-panel" style="padding:24px; position:relative; overflow:hidden;">
+                <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--green),var(--cyan),var(--blue));"></div>
+                <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+                    <div>
+                        <h3 style="font-size:15px; font-weight:700; margin-bottom:4px;">🏆 Match Day Sustainability Score</h3>
+                        <div style="font-size:13px; color:var(--text-secondary);">2nd highest of the tournament — Net-zero certification on track</div>
+                    </div>
+                    <div style="font-size:48px; font-weight:900; background:linear-gradient(135deg,var(--green),var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">96.5</div>
+                </div>
+                <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-top:16px;">
+                    <div style="text-align:center; padding:12px; background:var(--green-subtle); border:1px solid var(--green-glow); border-radius:10px;">
+                        <div style="font-size:18px; font-weight:700; color:var(--green-light);">A+</div>
+                        <div style="font-size:10px; color:var(--text-secondary);">Energy</div>
+                    </div>
+                    <div style="text-align:center; padding:12px; background:var(--blue-subtle); border:1px solid var(--blue-glow); border-radius:10px;">
+                        <div style="font-size:18px; font-weight:700; color:var(--blue-light);">A</div>
+                        <div style="font-size:10px; color:var(--text-secondary);">Water</div>
+                    </div>
+                    <div style="text-align:center; padding:12px; background:var(--green-subtle); border:1px solid var(--green-glow); border-radius:10px;">
+                        <div style="font-size:18px; font-weight:700; color:var(--green-light);">A+</div>
+                        <div style="font-size:10px; color:var(--text-secondary);">Waste</div>
+                    </div>
+                    <div style="text-align:center; padding:12px; background:var(--amber-subtle); border:1px solid var(--amber-glow); border-radius:10px;">
+                        <div style="font-size:18px; font-weight:700; color:var(--amber-light);">B+</div>
+                        <div style="font-size:10px; color:var(--text-secondary);">Transport</div>
+                    </div>
+                    <div style="text-align:center; padding:12px; background:var(--green-subtle); border:1px solid var(--green-glow); border-radius:10px;">
+                        <div style="font-size:18px; font-weight:700; color:var(--green-light);">A+</div>
+                        <div style="font-size:10px; color:var(--text-secondary);">Carbon</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             VIEW 9: EMERGENCY
+             ============================================================ -->
+        <div id="view-emergency" class="dashboard-view">
+            <header class="view-header">
+                <div class="view-header-left">
+                    <h1 class="view-title">Emergency Control</h1>
+                    <p class="view-subtitle">3 active alerts — all systems responding</p>
+                </div>
+                <div class="view-header-right">
+                    <div style="padding:8px 16px; background:var(--red-subtle); border:1px solid var(--red-glow); border-radius:12px; font-size:13px; font-weight:700; color:var(--red-light); display:flex; align-items:center; gap:8px;">
+                        <span class="status-dot red" style="animation:pulse 1s infinite;"></span>
+                        3 ACTIVE INCIDENTS
+                    </div>
+                </div>
+            </header>
+
+            <!-- Active Incidents -->
+            <div class="glass-panel" style="padding:24px; margin-bottom:24px; position:relative; overflow:hidden; border:1px solid var(--red-glow);">
+                <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--red),var(--amber));"></div>
+                <h3 style="font-size:15px; font-weight:700; margin-bottom:16px; color:var(--red-light);">🚨 Active Incidents</h3>
+                <div style="display:flex; flex-direction:column; gap:12px;">
+                    <div style="display:flex; gap:16px; align-items:flex-start; padding:16px; background:var(--red-subtle); border:1px solid var(--red-glow); border-radius:12px;">
+                        <div style="width:40px; height:40px; background:var(--red); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0;">🏥</div>
+                        <div style="flex:1;">
+                            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:8px;">
+                                <div>
+                                    <div style="font-size:14px; font-weight:700; color:var(--text-primary); margin-bottom:2px;">Medical Emergency — Section 214, Row G</div>
+                                    <div style="font-size:12px; color:var(--text-secondary);">Fan unresponsive. Medical team en route. AED deployed.</div>
+                                </div>
+                                <div style="text-align:right; flex-shrink:0;">
+                                    <div style="font-size:11px; color:var(--red-light);">7:12 PM • 2 min ago</div>
+                                    <div style="font-size:10px; background:var(--red); color:white; padding:2px 8px; border-radius:20px; margin-top:4px;">CRITICAL</div>
+                                </div>
+                            </div>
+                            <div style="margin-top:8px; font-size:12px; color:var(--amber-light);">🤖 AI Response: Medical team dispatched in 0.8 min. Nearest defibrillator located 23m away. Area cleared by 2 security officers.</div>
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:16px; align-items:flex-start; padding:16px; background:var(--amber-subtle); border:1px solid var(--amber-glow); border-radius:12px;">
+                        <div style="width:40px; height:40px; background:var(--amber); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0;">📦</div>
+                        <div style="flex:1;">
+                            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:8px;">
+                                <div>
+                                    <div style="font-size:14px; font-weight:700; color:var(--text-primary); margin-bottom:2px;">Suspicious Package — Parking Lot B, Zone 3</div>
+                                    <div style="font-size:12px; color:var(--text-secondary);">Unattended bag reported. Security sweeping. Area cordoned.</div>
+                                </div>
+                                <div style="text-align:right; flex-shrink:0;">
+                                    <div style="font-size:11px; color:var(--amber-light);">7:08 PM • 6 min ago</div>
+                                    <div style="font-size:10px; background:var(--amber); color:black; padding:2px 8px; border-radius:20px; margin-top:4px;">INVESTIGATING</div>
+                                </div>
+                            </div>
+                            <div style="margin-top:8px; font-size:12px; color:var(--amber-light);">🤖 AI Response: 4 security officers dispatched. 50m exclusion zone set. Bomb squad notified as precaution. Drone surveillance active.</div>
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:16px; align-items:flex-start; padding:16px; background:var(--blue-subtle); border:1px solid var(--blue-glow); border-radius:12px;">
+                        <div style="width:40px; height:40px; background:var(--blue); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0;">👥</div>
+                        <div style="flex:1;">
+                            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:8px;">
+                                <div>
+                                    <div style="font-size:14px; font-weight:700; color:var(--text-primary); margin-bottom:2px;">Crowd Anomaly Detected — Gate F Corridor</div>
+                                    <div style="font-size:12px; color:var(--text-secondary);">Flow pattern deviation. Possible unauthorized gathering. Monitoring.</div>
+                                </div>
+                                <div style="text-align:right; flex-shrink:0;">
+                                    <div style="font-size:11px; color:var(--blue-light);">7:14 PM • Active</div>
+                                    <div style="font-size:10px; background:var(--blue); color:white; padding:2px 8px; border-radius:20px; margin-top:4px;">MONITORING</div>
+                                </div>
+                            </div>
+                            <div style="margin-top:8px; font-size:12px; color:var(--blue-light);">🤖 AI Response: Camera 14F trained on target area. Security volunteer rerouted. Crowd AI predicts self-resolution in 3 min.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px;">
+                <!-- Emergency Protocol -->
+                <div class="glass-panel" style="padding:24px; position:relative; overflow:hidden;">
+                    <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--red),var(--purple));"></div>
+                    <h3 style="font-size:15px; font-weight:700; margin-bottom:16px;">📋 Emergency Response Status</h3>
+                    <div style="display:flex; flex-direction:column; gap:10px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--border);">
+                            <span style="font-size:13px; color:var(--text-primary);">🏥 Medical Teams On Site</span>
+                            <span style="font-size:13px; font-weight:700; color:var(--green-light);">6 active</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--border);">
+                            <span style="font-size:13px; color:var(--text-primary);">🚒 Fire Response Units</span>
+                            <span style="font-size:13px; font-weight:700; color:var(--green-light);">2 standby</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--border);">
+                            <span style="font-size:13px; color:var(--text-primary);">🚓 Police Units</span>
+                            <span style="font-size:13px; font-weight:700; color:var(--green-light);">12 deployed</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--border);">
+                            <span style="font-size:13px; color:var(--text-primary);">🚁 Helicopter EMS</span>
+                            <span style="font-size:13px; font-weight:700; color:var(--amber-light);">1 on standby (5 min)</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--border);">
+                            <span style="font-size:13px; color:var(--text-primary);">⚡ Avg Response Time</span>
+                            <span style="font-size:13px; font-weight:700; color:var(--green-light);">2.1 min</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0;">
+                            <span style="font-size:13px; color:var(--text-primary);">🎯 Evacuation Readiness</span>
+                            <span style="font-size:13px; font-weight:700; color:var(--green-light);">98%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emergency Actions -->
+                <div class="glass-panel" style="padding:24px; position:relative; overflow:hidden;">
+                    <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--amber),var(--red));"></div>
+                    <h3 style="font-size:15px; font-weight:700; margin-bottom:16px;">⚡ Emergency Quick Actions</h3>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                        <button style="padding:14px; background:var(--red-subtle); border:1px solid var(--red-glow); border-radius:12px; color:var(--red-light); font-size:12px; font-weight:700; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.background='var(--red)'; this.style.color='white';" onmouseout="this.style.background='var(--red-subtle)'; this.style.color='var(--red-light)';">
+                            🚨 Full Evacuation Alert
+                        </button>
+                        <button style="padding:14px; background:var(--amber-subtle); border:1px solid var(--amber-glow); border-radius:12px; color:var(--amber-light); font-size:12px; font-weight:700; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.background='var(--amber)'; this.style.color='black';" onmouseout="this.style.background='var(--amber-subtle)'; this.style.color='var(--amber-light)';">
+                            📢 PA Announcement
+                        </button>
+                        <button style="padding:14px; background:var(--blue-subtle); border:1px solid var(--blue-glow); border-radius:12px; color:var(--blue-light); font-size:12px; font-weight:700; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.background='var(--blue)'; this.style.color='white';" onmouseout="this.style.background='var(--blue-subtle)'; this.style.color='var(--blue-light)';">
+                            🔒 Lock Down Zone
+                        </button>
+                        <button style="padding:14px; background:var(--green-subtle); border:1px solid var(--green-glow); border-radius:12px; color:var(--green-light); font-size:12px; font-weight:700; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.background='var(--green)'; this.style.color='white';" onmouseout="this.style.background='var(--green-subtle)'; this.style.color='var(--green-light)';">
+                            ✅ All Clear Signal
+                        </button>
+                        <button style="padding:14px; background:var(--purple-subtle); border:1px solid var(--purple-glow); border-radius:12px; color:var(--purple-light); font-size:12px; font-weight:700; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.background='var(--purple)'; this.style.color='white';" onmouseout="this.style.background='var(--purple-subtle)'; this.style.color='var(--purple-light)';">
+                            🚁 Request Air Support
+                        </button>
+                        <button style="padding:14px; background:var(--cyan-subtle); border:1px solid var(--cyan-glow); border-radius:12px; color:var(--cyan-light); font-size:12px; font-weight:700; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.background='var(--cyan)'; this.style.color='white';" onmouseout="this.style.background='var(--cyan-subtle)'; this.style.color='var(--cyan-light)';">
+                            📋 Incident Report
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             VIEW 10: ANALYTICS
+             ============================================================ -->
+        <div id="view-analytics" class="dashboard-view">
+            <header class="view-header">
+                <h1 class="view-title">Analytics</h1>
+            </header>
+            <div class="analytics-charts">
+                 <div class="chart-box glass-panel"><h3>Crowd Flow</h3><div id="chart1" style="height:200px"></div></div>
+                 <div class="chart-box glass-panel"><h3>Energy Usage</h3><div id="chart2" style="height:200px"></div></div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             VIEW 11: LIVE TIMELINE
+             ============================================================ -->
+        <div id="view-timeline" class="dashboard-view">
+            <header class="view-header">
+                <h1 class="view-title">Live AI Timeline</h1>
+            </header>
+            <div class="timeline-container" id="timeline-feed">
+                <div style="padding:20px; color:var(--text-secondary)">No events yet. AI is monitoring operations...</div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             VIEW 12: EXECUTIVE INSIGHTS
+             ============================================================ -->
+        <div id="view-executive" class="dashboard-view">
+            <header class="view-header">
+                <div class="view-header-left">
+                    <h1 class="view-title">Executive Insights</h1>
+                    <p class="view-subtitle">Match Day 12 — Brazil vs. Germany, Quarter Final</p>
+                </div>
+                <div class="view-header-right">
+                    <div style="padding:8px 16px; background:var(--green-subtle); border:1px solid var(--green-glow); border-radius:12px; font-size:12px; font-weight:700; color:var(--green-light);">
+                        📊 Report Ready
+                    </div>
+                </div>
+            </header>
+
+            <!-- KPI Overview -->
+            <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px;">
+                <div class="glass-panel" style="padding:20px; border-top:2px solid var(--green);">
+                    <div style="font-size:13px; color:var(--text-secondary); margin-bottom:4px;">Operations Efficiency</div>
+                    <div style="font-size:32px; font-weight:900; color:var(--green-light);">99.2%</div>
+                    <div style="font-size:11px; color:var(--green-light);">↑ +0.8% vs Day 11</div>
+                </div>
+                <div class="glass-panel" style="padding:20px; border-top:2px solid var(--blue);">
+                    <div style="font-size:13px; color:var(--text-secondary); margin-bottom:4px;">Fan Satisfaction</div>
+                    <div style="font-size:32px; font-weight:900; color:var(--blue-light);">94.2%</div>
+                    <div style="font-size:11px; color:var(--blue-light);">Highest of tournament</div>
+                </div>
+                <div class="glass-panel" style="padding:20px; border-top:2px solid var(--cyan);">
+                    <div style="font-size:13px; color:var(--text-secondary); margin-bottom:4px;">Safety Score</div>
+                    <div style="font-size:32px; font-weight:900; color:var(--cyan-light);">97.8%</div>
+                    <div style="font-size:11px; color:var(--cyan-light);">↑ +1.2% vs target</div>
+                </div>
+                <div class="glass-panel" style="padding:20px; border-top:2px solid var(--purple);">
+                    <div style="font-size:13px; color:var(--text-secondary); margin-bottom:4px;">Sustainability</div>
+                    <div style="font-size:32px; font-weight:900; color:var(--purple-light);">96.5%</div>
+                    <div style="font-size:11px; color:var(--purple-light);">2nd of tournament</div>
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px;">
+                <!-- Revenue Breakdown -->
+                <div class="glass-panel" style="padding:24px; position:relative; overflow:hidden;">
+                    <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--green),var(--amber));"></div>
+                    <h3 style="font-size:15px; font-weight:700; margin-bottom:16px;">💰 Revenue Breakdown — Match Day 12</h3>
+                    <div style="display:flex; flex-direction:column; gap:12px;">
+                        <div>
+                            <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                                <span style="font-size:13px; color:var(--text-secondary);">Food & Beverage</span>
+                                <span style="font-size:13px; font-weight:700; color:var(--green-light);">$342,000 <span style="font-size:11px; color:var(--green-light);">↑+8%</span></span>
+                            </div>
+                            <div style="height:6px; background:var(--bg-elevated); border-radius:3px; overflow:hidden;"><div style="width:75%; height:100%; background:var(--green); border-radius:3px;"></div></div>
+                        </div>
+                        <div>
+                            <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                                <span style="font-size:13px; color:var(--text-secondary);">Premium Seating</span>
+                                <span style="font-size:13px; font-weight:700; color:var(--blue-light);">$124,000 <span style="font-size:11px; color:var(--text-secondary);">on target</span></span>
+                            </div>
+                            <div style="height:6px; background:var(--bg-elevated); border-radius:3px; overflow:hidden;"><div style="width:55%; height:100%; background:var(--blue); border-radius:3px;"></div></div>
+                        </div>
+                        <div>
+                            <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                                <span style="font-size:13px; color:var(--text-secondary);">Merchandise</span>
+                                <span style="font-size:13px; font-weight:700; color:var(--amber-light);">$89,000 <span style="font-size:11px; color:var(--red-light);">↓-2%</span></span>
+                            </div>
+                            <div style="height:6px; background:var(--bg-elevated); border-radius:3px; overflow:hidden;"><div style="width:40%; height:100%; background:var(--amber); border-radius:3px;"></div></div>
+                        </div>
+                        <div>
+                            <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                                <span style="font-size:13px; color:var(--text-secondary);">Parking</span>
+                                <span style="font-size:13px; font-weight:700; color:var(--cyan-light);">$48,000</span>
+                            </div>
+                            <div style="height:6px; background:var(--bg-elevated); border-radius:3px; overflow:hidden;"><div style="width:22%; height:100%; background:var(--cyan); border-radius:3px;"></div></div>
+                        </div>
+                        <div style="padding-top:12px; border-top:1px solid var(--border);">
+                            <div style="display:flex; justify-content:space-between;">
+                                <span style="font-size:14px; font-weight:700; color:var(--text-primary);">Total Revenue</span>
+                                <span style="font-size:14px; font-weight:900; color:var(--green-light);">$603,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Operating Costs -->
+                <div class="glass-panel" style="padding:24px; position:relative; overflow:hidden;">
+                    <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--blue),var(--purple));"></div>
+                    <h3 style="font-size:15px; font-weight:700; margin-bottom:16px;">📉 Operating Costs vs. Budget</h3>
+                    <div style="display:flex; flex-direction:column; gap:12px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:10px; background:var(--bg-elevated); border-radius:10px;">
+                            <span style="font-size:13px; color:var(--text-secondary);">Total Budget</span>
+                            <span style="font-size:14px; font-weight:700; color:var(--text-primary);">$52,000</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:10px; background:var(--green-subtle); border:1px solid var(--green-glow); border-radius:10px;">
+                            <span style="font-size:13px; color:var(--text-secondary);">Actual Cost</span>
+                            <span style="font-size:14px; font-weight:700; color:var(--green-light);">$48,200</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:10px; background:var(--green-subtle); border:1px solid var(--green-glow); border-radius:10px;">
+                            <span style="font-size:13px; color:var(--text-secondary);">Under Budget By</span>
+                            <span style="font-size:14px; font-weight:900; color:var(--green-light);">$3,800 ↓</span>
+                        </div>
+                    </div>
+                    <div style="margin-top:16px;">
+                        <div style="font-size:12px; color:var(--text-secondary); margin-bottom:8px;">Primary savings driver:</div>
+                        <div style="padding:10px; background:var(--blue-subtle); border:1px solid var(--blue-glow); border-radius:10px; font-size:12px; color:var(--blue-light);">
+                            ⚡ AI energy optimization saved $2,400 today. HVAC scheduling saved additional $800.
+                        </div>
+                    </div>
+
+                    <div style="margin-top:16px;">
+                        <h4 style="font-size:13px; font-weight:700; margin-bottom:10px; color:var(--text-primary);">📰 Media Sentiment</h4>
+                        <div style="display:flex; align-items:center; gap:12px;">
+                            <div style="flex:1; height:10px; background:var(--bg-elevated); border-radius:5px; overflow:hidden;"><div style="width:94%; height:100%; background:linear-gradient(90deg,var(--green),var(--cyan)); border-radius:5px;"></div></div>
+                            <span style="font-size:13px; font-weight:700; color:var(--green-light);">94% positive</span>
+                        </div>
+                        <div style="font-size:11px; color:var(--text-secondary); margin-top:6px;">Top story: "AI crowd management prevents congestion at MetLife" — trending #MetLifeWC2026</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Executive Highlights -->
+            <div class="glass-panel" style="padding:24px; position:relative; overflow:hidden;">
+                <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--amber),var(--green),var(--blue));"></div>
+                <h3 style="font-size:15px; font-weight:700; margin-bottom:16px;">⭐ Match Day 12 — Key Highlights</h3>
+                <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">
+                    <div style="padding:14px; background:var(--green-subtle); border:1px solid var(--green-glow); border-radius:12px;">
+                        <div style="font-size:20px; margin-bottom:8px;">🏆</div>
+                        <div style="font-size:13px; font-weight:700; color:var(--text-primary); margin-bottom:4px;">Most Efficient Day</div>
+                        <div style="font-size:11px; color:var(--text-secondary);">Match Day 12 is trending as the most efficient operation day of the tournament — 12% better than average.</div>
+                    </div>
+                    <div style="padding:14px; background:var(--blue-subtle); border:1px solid var(--blue-glow); border-radius:12px;">
+                        <div style="font-size:20px; margin-bottom:8px;">🤖</div>
+                        <div style="font-size:13px; font-weight:700; color:var(--text-primary); margin-bottom:4px;">AI Impact</div>
+                        <div style="font-size:11px; color:var(--text-secondary);">Gate D preemptive opening prevented 23-min congestion event. 3 medical incidents resolved avg 2.1 min.</div>
+                    </div>
+                    <div style="padding:14px; background:var(--amber-subtle); border:1px solid var(--amber-glow); border-radius:12px;">
+                        <div style="font-size:20px; margin-bottom:8px;">📋</div>
+                        <div style="font-size:13px; font-weight:700; color:var(--text-primary); margin-bottom:4px;">Action Items for Day 13</div>
+                        <div style="font-size:11px; color:var(--text-secondary);">5 high priority, 12 medium. Key: Gate C infrastructure assessment, extend AI agent monitoring radius.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Floating AI Button -->
+    <button class="ai-fab">⚡</button>
+
+    <!-- Load ALL scripts -->
+    <script src="js/data-simulator.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/digital-twin.js"></script>
+    <script src="js/ai-agents.js"></script>
+    <script src="js/ai-timeline.js"></script>
+    <script src="js/command-center.js"></script>
+    
+    <!-- Final app.js to initialize -->
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1129 @@
+/* =============================================================
+   PulseOS — Login Page Styles
+   FIFA World Cup 2026™ AI Operating System
+   Premium enterprise authentication interface
+   ============================================================= */
+
+/* =============================================================
+   1. LOGIN CONTAINER — Two-Column Split Layout
+   ============================================================= */
+
+.login-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    background: #06060b;
+    overflow: hidden;
+}
+
+/* =============================================================
+   2. LEFT PANEL — Animated Visual Showcase (55%)
+   ============================================================= */
+
+.login-left {
+    position: relative;
+    width: 55%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    /* Animated gradient background — deep blue → purple → cyan */
+    background: linear-gradient(
+        135deg,
+        #06060b 0%,
+        #0c1445 15%,
+        #1a0a3e 30%,
+        #0e2a6b 45%,
+        #06304d 60%,
+        #1a0a3e 75%,
+        #0c1445 90%,
+        #06060b 100%
+    );
+    background-size: 400% 400%;
+    animation: loginGradientShift 15s ease infinite;
+}
+
+/* Gradient shift keyframes */
+@keyframes loginGradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 100% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    75% {
+        background-position: 0% 100%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Overlay for depth and vignette effect */
+.login-left__overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse at 30% 50%,
+        rgba(59, 130, 246, 0.08) 0%,
+        transparent 60%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Particle canvas — fills the entire left panel */
+.particle-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Left panel content — sits above canvas and overlay */
+.login-left__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    text-align: center;
+    max-width: 520px;
+}
+
+/* =============================================================
+   3. BRANDING — PulseOS Logo + Name
+   ============================================================= */
+
+.login-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: loginFadeInUp 0.8s ease forwards;
+    animation-delay: 0.2s;
+}
+
+.login-brand__icon {
+    font-size: 3rem;
+    filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.6));
+    animation: loginIconPulse 3s ease-in-out infinite;
+}
+
+@keyframes loginIconPulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.6));
+        transform: scale(1);
+    }
+    50% {
+        filter: drop-shadow(0 0 35px rgba(59, 130, 246, 0.9));
+        transform: scale(1.08);
+    }
+}
+
+.login-brand__name {
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, #ffffff 0%, #3b82f6 50%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* =============================================================
+   4. TAGLINE
+   ============================================================= */
+
+.login-tagline {
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 3rem;
+    letter-spacing: -0.01em;
+    opacity: 0;
+    animation: loginFadeInUp 0.8s ease forwards;
+    animation-delay: 0.5s;
+}
+
+/* =============================================================
+   5. FLOATING STATS — Animated stat cards
+   ============================================================= */
+
+.login-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: loginFadeInUp 0.8s ease forwards;
+    animation-delay: 0.8s;
+}
+
+.login-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 1.25rem 1rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.4s ease;
+
+    /* Floating / bobbing animation */
+    animation: loginStatFloat 6s ease-in-out infinite;
+    animation-delay: var(--delay);
+}
+
+.login-stat:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(59, 130, 246, 0.3);
+    transform: translateY(-4px);
+}
+
+@keyframes loginStatFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.login-stat__number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #3b82f6, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.login-stat__icon-pulse {
+    font-size: 1.2rem;
+    color: #10b981;
+    animation: loginLivePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes loginLivePulse {
+    0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 8px rgba(16, 185, 129, 0.8);
+    }
+    50% {
+        opacity: 0.4;
+        text-shadow: 0 0 2px rgba(16, 185, 129, 0.3);
+    }
+}
+
+.login-stat__label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* =============================================================
+   6. PARTNERSHIP BADGE
+   ============================================================= */
+
+.login-partnership {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0;
+    animation: loginFadeInUp 0.8s ease forwards;
+    animation-delay: 1.1s;
+}
+
+.login-partnership__divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.login-partnership__text {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* =============================================================
+   7. RIGHT PANEL — Login Form (45%)
+   ============================================================= */
+
+.login-right {
+    width: 45%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0a0a12;
+    border-left: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.login-form-wrapper {
+    width: 100%;
+    max-width: 460px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* =============================================================
+   8. FORM HEADER
+   ============================================================= */
+
+.login-header {
+    text-align: left;
+    opacity: 0;
+    animation: loginFadeInRight 0.7s ease forwards;
+    animation-delay: 0.3s;
+}
+
+.login-header__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #3b82f6;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 1.25rem;
+}
+
+.login-header__title {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+}
+
+.login-header__subtitle {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+/* =============================================================
+   9. ROLE SELECTION LABEL
+   ============================================================= */
+
+.login-role-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0;
+    animation: loginFadeInRight 0.7s ease forwards;
+    animation-delay: 0.45s;
+}
+
+.login-role-label__text {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.login-role-label__required {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: rgba(59, 130, 246, 0.7);
+    padding: 0.2rem 0.5rem;
+    background: rgba(59, 130, 246, 0.08);
+    border-radius: 4px;
+}
+
+/* =============================================================
+   10. ROLE CARDS GRID — 2×3 Layout
+   ============================================================= */
+
+.login-roles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+}
+
+.login-role-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+
+    /* Staggered entrance animation */
+    opacity: 0;
+    transform: translateY(12px);
+    animation: loginCardEntrance 0.5s ease forwards;
+}
+
+/* Stagger role card animations */
+.login-role-card:nth-child(1) { animation-delay: 0.5s; }
+.login-role-card:nth-child(2) { animation-delay: 0.6s; }
+.login-role-card:nth-child(3) { animation-delay: 0.7s; }
+.login-role-card:nth-child(4) { animation-delay: 0.8s; }
+.login-role-card:nth-child(5) { animation-delay: 0.9s; }
+.login-role-card:nth-child(6) { animation-delay: 1.0s; }
+
+@keyframes loginCardEntrance {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Role card hover state */
+.login-role-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px) scale(1.01);
+}
+
+/* Role card SELECTED state */
+.login-role-card.selected {
+    background: rgba(59, 130, 246, 0.08);
+    border-color: rgba(59, 130, 246, 0.5);
+    box-shadow:
+        0 0 20px rgba(59, 130, 246, 0.12),
+        inset 0 0 20px rgba(59, 130, 246, 0.03);
+    transform: scale(1.02);
+}
+
+.login-role-card.selected:hover {
+    transform: scale(1.03);
+}
+
+/* Checkmark — hidden by default, visible when selected */
+.login-role-card__check {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #3b82f6;
+    border-radius: 50%;
+    font-size: 0.55rem;
+    font-weight: 700;
+    color: #ffffff;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.login-role-card.selected .login-role-card__check {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Role card icon */
+.login-role-card__icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+.login-role-card.selected .login-role-card__icon {
+    background: rgba(59, 130, 246, 0.12);
+}
+
+/* Role card info */
+.login-role-card__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+}
+
+.login-role-card__title {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.login-role-card__desc {
+    font-size: 0.65rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.35);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.login-role-card.selected .login-role-card__title {
+    color: #ffffff;
+}
+
+.login-role-card.selected .login-role-card__desc {
+    color: rgba(59, 130, 246, 0.7);
+}
+
+/* =============================================================
+   11. LOGIN FORM FIELDS
+   ============================================================= */
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    opacity: 0;
+    animation: loginFadeInRight 0.7s ease forwards;
+    animation-delay: 1.1s;
+}
+
+.login-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.login-field__label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.02em;
+}
+
+.login-field__input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.login-field__icon {
+    position: absolute;
+    left: 14px;
+    font-size: 0.9rem;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.6;
+}
+
+.login-field__input {
+    width: 100%;
+    padding: 0.85rem 1rem 0.85rem 2.8rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 400;
+    color: #ffffff;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.login-field__input::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.login-field__input:focus {
+    border-color: rgba(59, 130, 246, 0.5);
+    background: rgba(59, 130, 246, 0.04);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.08);
+}
+
+/* Password toggle button */
+.login-field__toggle {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    opacity: 0.4;
+    transition: opacity 0.2s ease;
+    padding: 4px 6px;
+    z-index: 1;
+}
+
+.login-field__toggle:hover {
+    opacity: 0.8;
+}
+
+/* =============================================================
+   12. OPTIONS ROW — Remember Me + Forgot Password
+   ============================================================= */
+
+.login-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Custom checkbox */
+.login-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.login-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.login-checkbox__mark {
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.03);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+}
+
+.login-checkbox__mark::after {
+    content: '✓';
+    font-size: 0.6rem;
+    color: #ffffff;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.login-checkbox input:checked + .login-checkbox__mark {
+    background: #3b82f6;
+    border-color: #3b82f6;
+}
+
+.login-checkbox input:checked + .login-checkbox__mark::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.login-checkbox__text {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.login-forgot {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #3b82f6;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.login-forgot:hover {
+    color: #60a5fa;
+    text-decoration: underline;
+}
+
+/* =============================================================
+   13. SUBMIT BUTTON — Gradient with loading state
+   ============================================================= */
+
+.login-submit {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.95rem 1.5rem;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
+    border: none;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    margin-top: 0.25rem;
+    letter-spacing: 0.01em;
+}
+
+/* Shimmer overlay on button */
+.login-submit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.15),
+        transparent
+    );
+    transition: left 0.5s ease;
+}
+
+.login-submit:hover {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #2563eb 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.35);
+}
+
+.login-submit:hover::before {
+    left: 100%;
+}
+
+.login-submit:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.25);
+}
+
+/* Loading state */
+.login-submit.loading {
+    pointer-events: none;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+}
+
+.login-submit.loading .login-submit__text {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+.login-submit.loading .login-submit__spinner {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.login-submit__text {
+    transition: all 0.3s ease;
+}
+
+.login-submit__spinner {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.3s ease;
+}
+
+.login-spinner-svg {
+    width: 100%;
+    height: 100%;
+    animation: loginSpinnerRotate 1s linear infinite;
+}
+
+.login-spinner-circle {
+    stroke-dasharray: 50;
+    stroke-dashoffset: 35;
+    animation: loginSpinnerDash 1.2s ease-in-out infinite;
+}
+
+@keyframes loginSpinnerRotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes loginSpinnerDash {
+    0% {
+        stroke-dashoffset: 50;
+    }
+    50% {
+        stroke-dashoffset: 15;
+    }
+    100% {
+        stroke-dashoffset: 50;
+    }
+}
+
+/* =============================================================
+   14. SSO DIVIDER
+   ============================================================= */
+
+.login-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0;
+    animation: loginFadeInRight 0.7s ease forwards;
+    animation-delay: 1.3s;
+}
+
+.login-divider__line {
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.login-divider__text {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+}
+
+/* =============================================================
+   15. SSO BUTTONS
+   ============================================================= */
+
+.login-sso {
+    display: flex;
+    gap: 0.65rem;
+    opacity: 0;
+    animation: loginFadeInRight 0.7s ease forwards;
+    animation-delay: 1.45s;
+}
+
+.login-sso__btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.login-sso__btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+.login-sso__icon {
+    font-size: 1rem;
+}
+
+.login-sso__name {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* =============================================================
+   16. SIGN UP LINK
+   ============================================================= */
+
+.login-signup {
+    text-align: center;
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.35);
+    opacity: 0;
+    animation: loginFadeInRight 0.7s ease forwards;
+    animation-delay: 1.6s;
+}
+
+.login-signup__link {
+    color: #3b82f6;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.login-signup__link:hover {
+    color: #60a5fa;
+    text-decoration: underline;
+}
+
+/* =============================================================
+   17. ENTRANCE ANIMATIONS — Shared keyframes
+   ============================================================= */
+
+@keyframes loginFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes loginFadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* =============================================================
+   18. RESPONSIVE DESIGN — Mobile & Tablet
+   ============================================================= */
+
+/* Tablet — stack layout */
+@media (max-width: 1024px) {
+    .login-container {
+        flex-direction: column;
+    }
+
+    /* Form comes first on mobile for usability */
+    .login-right {
+        order: 1;
+        width: 100%;
+        min-height: auto;
+        padding: 2rem 1.5rem;
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .login-left {
+        order: 2;
+        width: 100%;
+        min-height: 50vh;
+    }
+
+    .login-brand__name {
+        font-size: 2.2rem;
+    }
+
+    .login-tagline {
+        font-size: 1.2rem;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 640px) {
+    .login-right {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .login-form-wrapper {
+        gap: 1.25rem;
+    }
+
+    .login-roles-grid {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .login-role-card {
+        padding: 0.75rem 0.85rem;
+    }
+
+    .login-header__title {
+        font-size: 1.5rem;
+    }
+
+    .login-sso {
+        flex-direction: column;
+    }
+
+    .login-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+
+    .login-left__content {
+        padding: 2rem 1.5rem;
+    }
+
+    .login-brand__name {
+        font-size: 1.8rem;
+    }
+
+    .login-tagline {
+        font-size: 1.05rem;
+        margin-bottom: 2rem;
+    }
+
+    .login-left {
+        min-height: 40vh;
+    }
+}
+
+/* =============================================================
+   19. SCROLLBAR STYLING
+   ============================================================= */
+
+.login-right::-webkit-scrollbar {
+    width: 4px;
+}
+
+.login-right::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.login-right::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+}
+
+.login-right::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* =============================================================
+   20. FOCUS VISIBLE — Accessibility
+   ============================================================= */
+
+.login-role-card:focus-visible,
+.login-submit:focus-visible,
+.login-sso__btn:focus-visible,
+.login-field__input:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* =============================================================
+   21. PRINT — Hide decorative elements
+   ============================================================= */
+
+@media print {
+    .login-left {
+        display: none;
+    }
+
+    .login-right {
+        width: 100%;
+    }
+}
+
+/* =============================================================
+   22. AUTHENTICATION OVERLAYS (MFA / SSO)
+   ============================================================= */
+
+.auth-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.3s ease;
+}
+
+.auth-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.auth-modal {
+    width: 100%;
+    max-width: 420px;
+    padding: 2.5rem;
+    text-align: center;
+    transform: translateY(0) scale(1);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.auth-overlay.hidden .auth-modal {
+    transform: translateY(20px) scale(0.95);
+}
+
+.auth-modal__icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: float 4s ease-in-out infinite;
+}
+
+.auth-modal__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.auth-modal__desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+}
+
+.auth-modal__inputs {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.mfa-input {
+    width: 45px;
+    height: 55px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.mfa-input:focus {
+    outline: none;
+    border-color: var(--cyan);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 3px var(--cyan-subtle);
+}
+
+.sso-spinner {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1.5rem;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}

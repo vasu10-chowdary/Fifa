@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ===== META ===== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PulseOS — The AI Operating System powering FIFA World Cup 2026 Stadiums. Real-time crowd intelligence, AI agents, digital twin technology for 42 stadiums across North America.">
+  <meta name="theme-color" content="#06060b">
+
+  <!-- ===== FONT PRECONNECT (speeds up Inter load) ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <meta name="author" content="PulseOS">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="PulseOS — The AI Operating System for FIFA World Cup 2026 Stadiums">
+  <meta property="og:description" content="Transforming fan experience, operations, accessibility, sustainability, and safety using Generative AI.">
+  <meta property="og:type" content="website">
+  <title>PulseOS — The AI Operating System for FIFA World Cup 2026 Stadiums</title>
+
+  <!-- ===== CSS ===== -->
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION BAR
+       Fixed top nav with glass effect, logo, links, CTA
+       ============================================================ -->
+  <nav class="landing-nav" id="mainNav">
+    <div class="nav-inner">
+      <!-- Logo -->
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">⚡</div>
+        <span class="nav-logo-text">PulseOS</span>
+      </a>
+
+      <!-- Nav Links -->
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#agents">AI Agents</a></li>
+        <li><a href="#technology">Technology</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="login.html" class="nav-cta">Launch Platform</a></li>
+      </ul>
+
+      <!-- Mobile menu toggle -->
+      <div class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO SECTION
+       Full viewport, animated gradient bg, particle system, counters
+       ============================================================ -->
+  <section class="hero" id="hero">
+    <!-- Multi-layered gradient background -->
+    <div class="hero-bg"></div>
+
+    <!-- Animated aurora overlay -->
+    <div class="hero-aurora"></div>
+
+    <!-- Grid pattern overlay for depth -->
+    <div class="hero-grid"></div>
+
+    <!-- Canvas-based particle system -->
+    <div class="hero-particles">
+      <canvas id="particleCanvas"></canvas>
+    </div>
+
+    <!-- Hero content -->
+    <div class="hero-content">
+      <!-- Status badge -->
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        FIFA World Cup 2026 — System Active
+      </div>
+
+      <!-- Main headline -->
+      <h1 class="hero-title">
+        The <span class="gradient-text">AI Operating System</span><br>
+        for FIFA World Cup Stadiums
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="hero-subtitle">
+        Transforming fan experience, operations, accessibility, sustainability, and safety using Generative AI — across 42 stadiums and 16 host cities.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="hero-buttons">
+        <a href="login.html" class="hero-btn-primary">
+          Launch Platform
+          <span>→</span>
+        </a>
+        <a href="#dashboard" class="hero-btn-secondary">
+          <span>▶</span>
+          Watch Demo
+        </a>
+      </div>
+
+      <!-- Animated Counter Metrics -->
+      <div class="hero-counters">
+        <div class="counter-item">
+          <div class="counter-value blue" data-counter="3.5" data-suffix="M+" data-decimals="1">0</div>
+          <div class="counter-label">Fans Assisted</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-value cyan" data-counter="98" data-suffix="%" data-decimals="0">0</div>
+          <div class="counter-label">Faster Incident Response</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-value green" data-counter="42" data-suffix="" data-decimals="0">0</div>
+          <div class="counter-label">Stadiums Connected</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-value purple" data-counter="99.8" data-suffix="%" data-decimals="1">0</div>
+          <div class="counter-label">Operational Efficiency</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROBLEM SECTION — "The Challenge"
+       Three glass cards showing stadium management pain points
+       ============================================================ -->
+  <section class="landing-section" id="problem">
+    <div class="container">
+      <div class="section-header-centered reveal">
+        <div class="section-label">
+          <span class="section-label-line"></span>
+          The Challenge
+          <span class="section-label-line"></span>
+        </div>
+        <h2 class="landing-section-title">Managing the World's Largest<br>Sporting Event Is Complex</h2>
+        <p class="landing-section-subtitle">
+          Legacy stadium systems weren't built for the scale, speed, and complexity of the FIFA World Cup 2026.
+        </p>
+      </div>
+
+      <div class="problem-grid stagger-children">
+        <!-- Problem 1 -->
+        <div class="problem-card">
+          <span class="problem-icon">🚨</span>
+          <h3 class="problem-title">Managing 80,000+ Fans with Outdated Systems</h3>
+          <p class="problem-desc">
+            Current stadium management relies on manual coordination, radio calls, and spreadsheets. Crowd surges go undetected until it's too late. No unified view of real-time operations.
+          </p>
+        </div>
+
+        <!-- Problem 2 -->
+        <div class="problem-card">
+          <span class="problem-icon">⏱️</span>
+          <h3 class="problem-title">Average Incident Response Time: 12+ Minutes</h3>
+          <p class="problem-desc">
+            Medical emergencies, security threats, and facility failures take 12 minutes or more to resolve. In a stadium with 80,000 fans, every second of delay puts lives at risk.
+          </p>
+        </div>
+
+        <!-- Problem 3 -->
+        <div class="problem-card">
+          <span class="problem-icon">🌍</span>
+          <h3 class="problem-title">Coordinating Across 16 Host Cities with Zero Integration</h3>
+          <p class="problem-desc">
+            42 stadiums across the US, Mexico, and Canada operating on different systems, different protocols, and different languages — with no central command intelligence.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SOLUTION SECTION — "The PulseOS Solution"
+       Split layout: description left, animated diagram right
+       ============================================================ -->
+  <section class="landing-section" id="solution">
+    <div class="container">
+      <div class="solution-layout">
+        <!-- Left: Text description -->
+        <div class="solution-text reveal-left">
+          <div class="section-label">
+            <span class="section-label-line"></span>
+            The PulseOS Solution
+          </div>
+          <h2 class="landing-section-title">An AI-Powered Digital Twin Platform</h2>
+          <p>
+            PulseOS creates a real-time digital twin of every stadium — a living, breathing AI model that ingests sensor data, camera feeds, ticket scans, weather forecasts, and social media signals to deliver predictive intelligence at scale.
+          </p>
+          <p>
+            Six specialized AI agents work together to manage crowd flow, enhance fan experiences, coordinate volunteers, detect emergencies, optimize sustainability, and empower executives with natural language insights.
+          </p>
+
+          <!-- Key solution features -->
+          <div class="solution-features">
+            <div class="solution-feature">
+              <div class="solution-feature-icon blue">🔄</div>
+              <span class="solution-feature-text">Real-time digital twin synchronization across all 42 venues</span>
+            </div>
+            <div class="solution-feature">
+              <div class="solution-feature-icon green">🤖</div>
+              <span class="solution-feature-text">Six specialized AI agents working in coordinated harmony</span>
+            </div>
+            <div class="solution-feature">
+              <div class="solution-feature-icon cyan">📡</div>
+              <span class="solution-feature-text">Sub-second response time with edge computing architecture</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Animated connection diagram -->
+        <div class="solution-diagram reveal-right">
+          <!-- Orbital rings -->
+          <div class="diagram-orbit"></div>
+          <div class="diagram-orbit diagram-orbit-2"></div>
+
+          <!-- SVG connection lines -->
+          <svg class="diagram-lines" viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">
+            <!-- Lines from each outer node to center (240, 240) -->
+            <line class="diagram-line" x1="240" y1="60" x2="240" y2="200" />
+            <line class="diagram-line" x1="420" y1="145" x2="290" y2="220" />
+            <line class="diagram-line" x1="420" y1="335" x2="290" y2="260" />
+            <line class="diagram-line" x1="240" y1="420" x2="240" y2="280" />
+            <line class="diagram-line" x1="60" y1="335" x2="190" y2="260" />
+            <line class="diagram-line" x1="60" y1="145" x2="190" y2="220" />
+          </svg>
+
+          <!-- Center: AI Brain -->
+          <div class="diagram-node diagram-center">
+            <div class="diagram-node-circle">🧠</div>
+            <span class="diagram-node-label">AI Brain</span>
+          </div>
+
+          <!-- Outer nodes -->
+          <div class="diagram-node diagram-node-1">
+            <div class="diagram-node-circle">👥</div>
+            <span class="diagram-node-label">Crowd Flow</span>
+          </div>
+          <div class="diagram-node diagram-node-2">
+            <div class="diagram-node-circle">🛡️</div>
+            <span class="diagram-node-label">Safety</span>
+          </div>
+          <div class="diagram-node diagram-node-3">
+            <div class="diagram-node-circle">⚡</div>
+            <span class="diagram-node-label">Operations</span>
+          </div>
+          <div class="diagram-node diagram-node-4">
+            <div class="diagram-node-circle">🎯</div>
+            <span class="diagram-node-label">Experience</span>
+          </div>
+          <div class="diagram-node diagram-node-5">
+            <div class="diagram-node-circle">🌱</div>
+            <span class="diagram-node-label">Sustainability</span>
+          </div>
+          <div class="diagram-node diagram-node-6">
+            <div class="diagram-node-circle">📊</div>
+            <span class="diagram-node-label">Analytics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       AI AGENTS SECTION
+       3×2 grid of agent cards with unique glow effects
+       ============================================================ -->
+  <section class="landing-section" id="agents">
+    <div class="container">
+      <div class="section-header-centered reveal">
+        <div class="section-label">
+          <span class="section-label-line"></span>
+          AI Agents
+          <span class="section-label-line"></span>
+        </div>
+        <h2 class="landing-section-title">Six AI Agents. One Intelligent Platform.</h2>
+        <p class="landing-section-subtitle">
+          Each agent is a specialist — powered by GPT-4o and Gemini — trained on stadium operations, crowd dynamics, and FIFA protocols.
+        </p>
+      </div>
+
+      <div class="agents-grid stagger-children">
+        <!-- Agent 1: Crowd AI -->
+        <div class="landing-agent-card glow-blue">
+          <div class="agent-icon-wrapper blue">🧠</div>
+          <h3 class="landing-agent-title">Crowd AI</h3>
+          <p class="landing-agent-desc">
+            Predict congestion 30 minutes before it happens. Generate dynamic rerouting plans. Monitor real-time density heatmaps for every gate, concourse, and exit across all 42 stadiums.
+          </p>
+          <div class="agent-card-arrow">
+            Learn more <span>→</span>
+          </div>
+        </div>
+
+        <!-- Agent 2: Fan Concierge AI -->
+        <div class="landing-agent-card glow-cyan">
+          <div class="agent-icon-wrapper cyan">🎯</div>
+          <h3 class="landing-agent-title">Fan Concierge AI</h3>
+          <p class="landing-agent-desc">
+            Personal AI assistant for every fan in 40+ languages. Real-time navigation, food ordering, seat upgrades, accessibility support, and match insights — all through natural language.
+          </p>
+          <div class="agent-card-arrow">
+            Learn more <span>→</span>
+          </div>
+        </div>
+
+        <!-- Agent 3: Volunteer Copilot -->
+        <div class="landing-agent-card glow-green">
+          <div class="agent-icon-wrapper green">🤝</div>
+          <h3 class="landing-agent-title">Volunteer Copilot</h3>
+          <p class="landing-agent-desc">
+            Intelligent task assignment for 20,000+ volunteers per venue. Real-time emergency guidance, shift coordination, multilingual communication, and performance tracking.
+          </p>
+          <div class="agent-card-arrow">
+            Learn more <span>→</span>
+          </div>
+        </div>
+
+        <!-- Agent 4: Safety AI -->
+        <div class="landing-agent-card glow-red">
+          <div class="agent-icon-wrapper red">🛡️</div>
+          <h3 class="landing-agent-title">Safety AI</h3>
+          <p class="landing-agent-desc">
+            AI-powered medical detection using camera vision. Automated evacuation planning optimized for crowd density. Incident prediction and real-time coordination with first responders.
+          </p>
+          <div class="agent-card-arrow">
+            Learn more <span>→</span>
+          </div>
+        </div>
+
+        <!-- Agent 5: Sustainability AI -->
+        <div class="landing-agent-card glow-green">
+          <div class="agent-icon-wrapper green">🌱</div>
+          <h3 class="landing-agent-title">Sustainability AI</h3>
+          <p class="landing-agent-desc">
+            Real-time energy optimization reducing consumption by 34%. Carbon tracking per match, water usage monitoring, waste diversion intelligence, and green certification compliance.
+          </p>
+          <div class="agent-card-arrow">
+            Learn more <span>→</span>
+          </div>
+        </div>
+
+        <!-- Agent 6: Executive AI -->
+        <div class="landing-agent-card glow-purple">
+          <div class="agent-icon-wrapper purple">📊</div>
+          <h3 class="landing-agent-title">Executive AI</h3>
+          <p class="landing-agent-desc">
+            Natural language stadium management. Ask complex questions in plain English and get instant analytics, reports, and action recommendations. Powered by conversational BI.
+          </p>
+          <div class="agent-card-arrow">
+            Learn more <span>→</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FEATURES SECTION — "Built for the World Stage"
+       4×2 grid of feature pills/cards
+       ============================================================ -->
+  <section class="landing-section" id="features">
+    <div class="container">
+      <div class="section-header-centered reveal">
+        <div class="section-label">
+          <span class="section-label-line"></span>
+          Features
+          <span class="section-label-line"></span>
+        </div>
+        <h2 class="landing-section-title">Built for the World Stage</h2>
+        <p class="landing-section-subtitle">
+          Every feature is engineered for the unprecedented scale and complexity of hosting the FIFA World Cup across three nations.
+        </p>
+      </div>
+
+      <div class="features-grid stagger-children">
+        <div class="feature-card">
+          <span class="feature-card-icon">🏟️</span>
+          <span class="feature-card-text">Digital Twin Stadium</span>
+        </div>
+        <div class="feature-card">
+          <span class="feature-card-icon">📡</span>
+          <span class="feature-card-text">Real-Time Crowd Intelligence</span>
+        </div>
+        <div class="feature-card">
+          <span class="feature-card-icon">🚇</span>
+          <span class="feature-card-text">Smart Transportation</span>
+        </div>
+        <div class="feature-card">
+          <span class="feature-card-icon">♿</span>
+          <span class="feature-card-text">AI Accessibility Hub</span>
+        </div>
+        <div class="feature-card">
+          <span class="feature-card-icon">🌐</span>
+          <span class="feature-card-text">Multilingual AI Translation</span>
+        </div>
+        <div class="feature-card">
+          <span class="feature-card-icon">📊</span>
+          <span class="feature-card-text">Executive Insights</span>
+        </div>
+        <div class="feature-card">
+          <span class="feature-card-icon">🚨</span>
+          <span class="feature-card-text">Emergency Response</span>
+        </div>
+        <div class="feature-card">
+          <span class="feature-card-icon">⏱️</span>
+          <span class="feature-card-text">Live AI Timeline</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TECHNOLOGY SECTION — "Enterprise-Grade Technology"
+       Beautiful tech stack grid
+       ============================================================ -->
+  <section class="landing-section" id="technology">
+    <div class="container">
+      <div class="section-header-centered reveal">
+        <div class="section-label">
+          <span class="section-label-line"></span>
+          Technology
+          <span class="section-label-line"></span>
+        </div>
+        <h2 class="landing-section-title">Enterprise-Grade Technology</h2>
+        <p class="landing-section-subtitle">
+          Built on a modern, scalable stack trusted by the world's most demanding applications.
+        </p>
+      </div>
+
+      <div class="tech-grid stagger-children">
+        <div class="tech-pill">
+          <span class="tech-pill-icon" style="background: rgba(255,255,255,0.06);">▲</span>
+          Next.js
+        </div>
+        <div class="tech-pill">
+          <span class="tech-pill-icon" style="background: rgba(97,218,251,0.1); color: #61dafb;">⚛</span>
+          React
+        </div>
+        <div class="tech-pill">
+          <span class="tech-pill-icon" style="background: rgba(49,120,198,0.1); color: #3178c6;">TS</span>
+          TypeScript
+        </div>
+        <div class="tech-pill">
+          <span class="tech-pill-icon" style="background: rgba(55,118,171,0.1); color: #3776ab;">🐍</span>
+          Python
+        </div>
+        <div class="tech-pill">
+          <span class="tech-pill-icon" style="background: rgba(0,150,136,0.1); color: #009688;">⚡</span>
+          FastAPI
+        </div>
+        <div class="tech-pill">
+          <span class="tech-pill-icon" style="background: rgba(16,163,127,0.1); color: #10a37f;">◆</span>
+          OpenAI GPT
+        </div>
+        <div class="tech-pill">
+          <span class="tech-pill-icon" style="background: rgba(66,133,244,0.1); color: #4285f4;">✦</span>
+          Google Gemini
+        </div>
+        <div class="tech-pill">
+          <span class="tech-pill-icon" style="background: rgba(255,160,0,0.1); color: #ffa000;">🔥</span>
+          Firebase
+        </div>
+        <div class="tech-pill">
+          <span class="tech-pill-icon" style="background: rgba(66,100,251,0.1); color: #4264fb;">🗺️</span>
+          Mapbox
+        </div>
+        <div class="tech-pill">
+          <span class="tech-pill-icon" style="background: rgba(242,200,15,0.1); color: #f2c80f;">📊</span>
+          PowerBI
+        </div>
+        <div class="tech-pill">
+          <span class="tech-pill-icon" style="background: rgba(255,255,255,0.06);">▲</span>
+          Vercel
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DASHBOARD PREVIEW SECTION — "See PulseOS in Action"
+       Mini dashboard mock with 3D tilt, glowing border
+       ============================================================ -->
+  <section class="landing-section" id="dashboard">
+    <div class="container">
+      <div class="section-header-centered reveal">
+        <div class="section-label">
+          <span class="section-label-line"></span>
+          Live Preview
+          <span class="section-label-line"></span>
+        </div>
+        <h2 class="landing-section-title">See PulseOS in Action</h2>
+        <p class="landing-section-subtitle">
+          A unified command center for real-time stadium intelligence — every metric, every agent, every insight in one view.
+        </p>
+      </div>
+
+      <!-- Dashboard Preview with 3D Perspective -->
+      <div class="dashboard-preview-wrapper reveal-scale">
+        <div class="dashboard-preview">
+          <div class="mini-dashboard">
+            <!-- Mini Sidebar -->
+            <div class="mini-sidebar">
+              <div class="mini-sidebar-logo">
+                <div class="mini-sidebar-logo-icon">⚡</div>
+                <span class="mini-sidebar-logo-text">PulseOS</span>
+              </div>
+              <div class="mini-sidebar-item active">
+                <span>📊</span> Dashboard
+              </div>
+              <div class="mini-sidebar-item">
+                <span>🧠</span> Crowd AI
+              </div>
+              <div class="mini-sidebar-item">
+                <span>🎯</span> Fan Concierge
+              </div>
+              <div class="mini-sidebar-item">
+                <span>🤝</span> Volunteers
+              </div>
+              <div class="mini-sidebar-item">
+                <span>🛡️</span> Safety
+              </div>
+              <div class="mini-sidebar-item">
+                <span>🌱</span> Sustainability
+              </div>
+              <div class="mini-sidebar-item">
+                <span>📈</span> Executive AI
+              </div>
+              <div class="mini-sidebar-item">
+                <span>⏱️</span> Timeline
+              </div>
+            </div>
+
+            <!-- Mini Main Content -->
+            <div class="mini-main">
+              <!-- Top Bar -->
+              <div class="mini-topbar">
+                <span class="mini-topbar-title">MetLife Stadium — USA vs Brazil</span>
+                <span class="mini-topbar-badge">
+                  <span style="width:6px;height:6px;border-radius:50%;background:#10b981;display:inline-block;"></span>
+                  LIVE
+                </span>
+              </div>
+
+              <!-- Metric Cards -->
+              <div class="mini-metrics">
+                <div class="mini-metric">
+                  <div class="mini-metric-label">Crowd</div>
+                  <div class="mini-metric-value" style="color: var(--blue-light);">78,432</div>
+                  <div class="mini-metric-change">↑ 96.8% capacity</div>
+                </div>
+                <div class="mini-metric">
+                  <div class="mini-metric-label">Safety Score</div>
+                  <div class="mini-metric-value" style="color: var(--green-light);">97.2</div>
+                  <div class="mini-metric-change">↑ +2.1 from avg</div>
+                </div>
+                <div class="mini-metric">
+                  <div class="mini-metric-label">Avg Response</div>
+                  <div class="mini-metric-value" style="color: var(--cyan-light);">42s</div>
+                  <div class="mini-metric-change">↓ 94% faster</div>
+                </div>
+                <div class="mini-metric">
+                  <div class="mini-metric-label">Energy</div>
+                  <div class="mini-metric-value" style="color: var(--purple-light);">-34%</div>
+                  <div class="mini-metric-change">↓ vs baseline</div>
+                </div>
+              </div>
+
+              <!-- Charts Row -->
+              <div class="mini-charts">
+                <!-- Crowd Flow Chart -->
+                <div class="mini-chart-card">
+                  <div class="mini-chart-title">Crowd Flow — Last 90 Minutes</div>
+                  <svg class="mini-sparkline" viewBox="0 0 400 80" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#3b82f6" />
+                        <stop offset="100%" stop-color="#3b82f6" stop-opacity="0" />
+                      </linearGradient>
+                    </defs>
+                    <path class="mini-sparkline-area" d="M0,60 L25,55 L50,48 L75,52 L100,40 L125,35 L150,38 L175,28 L200,22 L225,18 L250,20 L275,15 L300,12 L325,14 L350,10 L375,8 L400,5 L400,80 L0,80 Z" fill="url(#sparkGrad)" />
+                    <path class="mini-sparkline-line" d="M0,60 L25,55 L50,48 L75,52 L100,40 L125,35 L150,38 L175,28 L200,22 L225,18 L250,20 L275,15 L300,12 L325,14 L350,10 L375,8 L400,5" stroke="#3b82f6" />
+                  </svg>
+                </div>
+
+                <!-- AI Agents Status -->
+                <div class="mini-chart-card">
+                  <div class="mini-chart-title">AI Agent Activity</div>
+                  <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;">
+                      <span style="font-size:11px;color:var(--text-secondary);">🧠 Crowd AI</span>
+                      <span style="font-size:10px;color:var(--green-light);">● Active</span>
+                    </div>
+                    <div style="width:100%;height:4px;background:var(--bg-tertiary);border-radius:99px;">
+                      <div style="width:92%;height:100%;background:linear-gradient(90deg,#3b82f6,#22d3ee);border-radius:99px;"></div>
+                    </div>
+                    <div style="display:flex;align-items:center;justify-content:space-between;">
+                      <span style="font-size:11px;color:var(--text-secondary);">🛡️ Safety AI</span>
+                      <span style="font-size:10px;color:var(--green-light);">● Active</span>
+                    </div>
+                    <div style="width:100%;height:4px;background:var(--bg-tertiary);border-radius:99px;">
+                      <div style="width:88%;height:100%;background:linear-gradient(90deg,#ef4444,#f87171);border-radius:99px;"></div>
+                    </div>
+                    <div style="display:flex;align-items:center;justify-content:space-between;">
+                      <span style="font-size:11px;color:var(--text-secondary);">🎯 Fan AI</span>
+                      <span style="font-size:10px;color:var(--green-light);">● Active</span>
+                    </div>
+                    <div style="width:100%;height:4px;background:var(--bg-tertiary);border-radius:99px;">
+                      <div style="width:95%;height:100%;background:linear-gradient(90deg,#06b6d4,#22d3ee);border-radius:99px;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Below Preview -->
+      <div style="text-align: center;" class="reveal">
+        <a href="login.html" class="hero-btn-primary" style="display:inline-flex;">
+          Launch Platform
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TESTIMONIALS SECTION — "Trusted by Stadium Leaders"
+       Three testimonial cards with quotes
+       ============================================================ -->
+  <section class="landing-section" id="testimonials">
+    <div class="container">
+      <div class="section-header-centered reveal">
+        <div class="section-label">
+          <span class="section-label-line"></span>
+          Testimonials
+          <span class="section-label-line"></span>
+        </div>
+        <h2 class="landing-section-title">Trusted by Stadium Leaders</h2>
+        <p class="landing-section-subtitle">
+          Hear from the executives and operators who rely on PulseOS to deliver world-class events.
+        </p>
+      </div>
+
+      <div class="testimonials-grid stagger-children">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card">
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-quote">
+            PulseOS reduced our incident response time by 94%. The AI predictions are remarkably accurate — we detected a crowd surge 23 minutes before it would have become critical.
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SC</div>
+            <div>
+              <div class="testimonial-name">Dr. Sarah Chen</div>
+              <div class="testimonial-role">Chief Operations Officer, MetLife Stadium</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card">
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-quote">
+            The fan experience transformation is extraordinary. Real-time multilingual support for 3.5 million visitors across three countries — this is the future of sports technology.
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background: linear-gradient(135deg, var(--cyan), var(--blue));">MR</div>
+            <div>
+              <div class="testimonial-name">Marco Rodriguez</div>
+              <div class="testimonial-role">FIFA Director of Digital Innovation</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card">
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-quote">
+            We achieved carbon neutrality goals 6 months ahead of schedule with Sustainability AI. Energy optimization alone saved $2.4 million across the tournament venues.
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background: linear-gradient(135deg, var(--green), var(--cyan));">AP</div>
+            <div>
+              <div class="testimonial-name">Aisha Patel</div>
+              <div class="testimonial-role">Head of Sustainability, FIFA 2026 Organizing Committee</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA SECTION — Final call-to-action
+       ============================================================ -->
+  <section class="landing-section cta-section" id="cta">
+    <div class="container">
+      <div class="section-header-centered reveal">
+        <div class="section-label">
+          <span class="section-label-line"></span>
+          Get Started
+          <span class="section-label-line"></span>
+        </div>
+        <h2 class="landing-section-title">Ready to Transform<br>Stadium Operations?</h2>
+        <p class="landing-section-subtitle" style="margin-bottom: var(--sp-10);">
+          Join the 42 stadiums already using PulseOS to deliver the most technologically advanced World Cup in history.
+        </p>
+        <div style="display:flex;align-items:center;justify-content:center;gap:var(--sp-4);flex-wrap:wrap;">
+          <a href="login.html" class="hero-btn-primary">
+            Launch Platform
+            <span>→</span>
+          </a>
+          <a href="#features" class="hero-btn-secondary">
+            Explore Features
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       Logo, tagline, column links, copyright, social icons
+       ============================================================ -->
+  <footer class="landing-footer">
+    <div class="container">
+      <!-- Footer Top — Brand + Link Columns -->
+      <div class="footer-top">
+        <!-- Brand column -->
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="footer-logo-icon">⚡</div>
+            <span class="footer-logo-text">PulseOS</span>
+          </div>
+          <p class="footer-tagline">
+            The AI Operating System for FIFA World Cup 2026 Stadiums. Powering real-time intelligence across 42 venues, 16 cities, and 3 nations.
+          </p>
+        </div>
+
+        <!-- Platform column -->
+        <div>
+          <h4 class="footer-column-title">Platform</h4>
+          <ul class="footer-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#agents">AI Agents</a></li>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#">Security</a></li>
+          </ul>
+        </div>
+
+        <!-- Company column -->
+        <div>
+          <h4 class="footer-column-title">Company</h4>
+          <ul class="footer-links">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources column -->
+        <div>
+          <h4 class="footer-column-title">Resources</h4>
+          <ul class="footer-links">
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">API</a></li>
+            <li><a href="#">Status</a></li>
+            <li><a href="#">Community</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom — Copyright + Socials -->
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 PulseOS. Built for FIFA World Cup 2026.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social-link" aria-label="Twitter">🐦</a>
+          <a href="#" class="footer-social-link" aria-label="LinkedIn">💼</a>
+          <a href="#" class="footer-social-link" aria-label="GitHub">🐙</a>
+          <a href="#" class="footer-social-link" aria-label="YouTube">🎬</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script src="js/landing.js"></script>
+</body>
+</html>

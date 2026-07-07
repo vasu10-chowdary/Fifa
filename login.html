@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ============================================================
+         PulseOS — Login Page
+         FIFA World Cup 2026™ AI Operating System
+         Enterprise-grade authentication interface
+         ============================================================ -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#06060b">
+    <meta name="description" content="PulseOS — The AI Operating System powering FIFA World Cup 2026 stadiums. Sign in to access the command center.">
+    <title>Login — PulseOS</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- PulseOS Design System -->
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+    <!-- ============================================================
+         LOGIN CONTAINER — Two-Column Split Layout
+         Left (55%): Animated visual showcase
+         Right (45%): Authentication form
+         ============================================================ -->
+    <div class="login-container">
+
+        <!-- ========================================================
+             LEFT PANEL — Animated Visual Showcase
+             Features: Gradient background, branding, floating stats,
+             particle canvas, partnership badge
+             ======================================================== -->
+        <div class="login-left">
+
+            <!-- Canvas for animated particle dots -->
+            <canvas id="particleCanvas" class="particle-canvas"></canvas>
+
+            <!-- Gradient overlay for depth -->
+            <div class="login-left__overlay"></div>
+
+            <!-- Left panel content wrapper -->
+            <div class="login-left__content">
+
+                <!-- PulseOS Branding -->
+                <div class="login-brand">
+                    <div class="login-brand__icon">⚡</div>
+                    <h1 class="login-brand__name">PulseOS</h1>
+                </div>
+
+                <!-- Tagline -->
+                <p class="login-tagline">
+                    One Intelligent Platform.<br>
+                    Millions of Fans.<br>
+                    Zero Chaos.
+                </p>
+
+                <!-- Floating Stats Grid -->
+                <div class="login-stats">
+                    <div class="login-stat" style="--delay: 0s">
+                        <span class="login-stat__number">42</span>
+                        <span class="login-stat__label">Connected Stadiums</span>
+                    </div>
+                    <div class="login-stat" style="--delay: 0.8s">
+                        <span class="login-stat__number">6</span>
+                        <span class="login-stat__label">AI Agents Active</span>
+                    </div>
+                    <div class="login-stat" style="--delay: 1.6s">
+                        <span class="login-stat__number">16</span>
+                        <span class="login-stat__label">Host Cities</span>
+                    </div>
+                    <div class="login-stat" style="--delay: 2.4s">
+                        <span class="login-stat__icon-pulse">●</span>
+                        <span class="login-stat__label">Real-Time Operations</span>
+                    </div>
+                </div>
+
+                <!-- Partnership Badge -->
+                <div class="login-partnership">
+                    <div class="login-partnership__divider"></div>
+                    <span class="login-partnership__text">FIFA World Cup 2026™ Official Technology Partner</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ========================================================
+             RIGHT PANEL — Login Form
+             Features: Role selection grid, credentials, SSO options,
+             loading animation, entrance animations
+             ======================================================== -->
+        <div class="login-right">
+            <div class="login-form-wrapper">
+
+                <!-- Form Header -->
+                <div class="login-header">
+                    <div class="login-header__badge">🔒 Secure Access</div>
+                    <h2 class="login-header__title">Welcome to PulseOS</h2>
+                    <p class="login-header__subtitle">Sign in to access the command center</p>
+                </div>
+
+                <!-- Role Selection Label -->
+                <div class="login-role-label">
+                    <span class="login-role-label__text">Select your role</span>
+                    <span class="login-role-label__required">Required</span>
+                </div>
+
+                <!-- Role Selection Grid (2×3) -->
+                <div class="login-roles-grid">
+
+                    <!-- Role: Fan -->
+                    <div class="login-role-card" data-role="fan">
+                        <div class="login-role-card__check">✓</div>
+                        <div class="login-role-card__icon">👤</div>
+                        <div class="login-role-card__info">
+                            <span class="login-role-card__title">Fan</span>
+                            <span class="login-role-card__desc">Access fan services & navigation</span>
+                        </div>
+                    </div>
+
+                    <!-- Role: Volunteer -->
+                    <div class="login-role-card" data-role="volunteer">
+                        <div class="login-role-card__check">✓</div>
+                        <div class="login-role-card__icon">🤝</div>
+                        <div class="login-role-card__info">
+                            <span class="login-role-card__title">Volunteer</span>
+                            <span class="login-role-card__desc">Task management & coordination</span>
+                        </div>
+                    </div>
+
+                    <!-- Role: Security -->
+                    <div class="login-role-card" data-role="security">
+                        <div class="login-role-card__check">✓</div>
+                        <div class="login-role-card__icon">🛡️</div>
+                        <div class="login-role-card__info">
+                            <span class="login-role-card__title">Security</span>
+                            <span class="login-role-card__desc">Surveillance & incident response</span>
+                        </div>
+                    </div>
+
+                    <!-- Role: Operations Manager (Default Selected) -->
+                    <div class="login-role-card selected" data-role="operations">
+                        <div class="login-role-card__check">✓</div>
+                        <div class="login-role-card__icon">📋</div>
+                        <div class="login-role-card__info">
+                            <span class="login-role-card__title">Operations Manager</span>
+                            <span class="login-role-card__desc">Full command center access</span>
+                        </div>
+                    </div>
+
+                    <!-- Role: Medical Team -->
+                    <div class="login-role-card" data-role="medical">
+                        <div class="login-role-card__check">✓</div>
+                        <div class="login-role-card__icon">🏥</div>
+                        <div class="login-role-card__info">
+                            <span class="login-role-card__title">Medical Team</span>
+                            <span class="login-role-card__desc">Emergency & health services</span>
+                        </div>
+                    </div>
+
+                    <!-- Role: Administrator -->
+                    <div class="login-role-card" data-role="admin">
+                        <div class="login-role-card__check">✓</div>
+                        <div class="login-role-card__icon">⚙️</div>
+                        <div class="login-role-card__info">
+                            <span class="login-role-card__title">Administrator</span>
+                            <span class="login-role-card__desc">Complete system administration</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Login Form -->
+                <form id="loginForm" class="login-form" autocomplete="off">
+
+                    <!-- Email Field -->
+                    <div class="login-field">
+                        <label class="login-field__label" for="email">Email address</label>
+                        <div class="login-field__input-wrap">
+                            <span class="login-field__icon">📧</span>
+                            <input
+                                type="email"
+                                id="email"
+                                class="login-field__input"
+                                value=""
+                                placeholder="Enter your email"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="login-field">
+                        <label class="login-field__label" for="password">Password</label>
+                        <div class="login-field__input-wrap">
+                            <span class="login-field__icon">🔑</span>
+                            <input
+                                type="password"
+                                id="password"
+                                class="login-field__input"
+                                value=""
+                                placeholder="Enter your password"
+                                required
+                            >
+                            <button type="button" class="login-field__toggle" id="passwordToggle" aria-label="Toggle password visibility">
+                                👁️
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Remember Me + Forgot Password -->
+                    <div class="login-options">
+                        <label class="login-checkbox">
+                            <input type="checkbox" checked>
+                            <span class="login-checkbox__mark"></span>
+                            <span class="login-checkbox__text">Remember me</span>
+                        </label>
+                        <a href="#" class="login-forgot">Forgot password?</a>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="login-submit" id="loginButton">
+                        <span class="login-submit__text">Enter PulseOS →</span>
+                        <span class="login-submit__spinner">
+                            <svg class="login-spinner-svg" viewBox="0 0 24 24">
+                                <circle class="login-spinner-circle" cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"></circle>
+                            </svg>
+                        </span>
+                    </button>
+
+                </form>
+
+                <!-- SSO Divider -->
+                <div class="login-divider">
+                    <span class="login-divider__line"></span>
+                    <span class="login-divider__text">or continue with</span>
+                    <span class="login-divider__line"></span>
+                </div>
+
+                <!-- SSO Buttons -->
+                <div class="login-sso">
+                    <button class="login-sso__btn" type="button" data-provider="Google">
+                        <span class="login-sso__icon">🔵</span>
+                        <span class="login-sso__name">Google</span>
+                    </button>
+                    <button class="login-sso__btn" type="button" data-provider="Microsoft">
+                        <span class="login-sso__icon">🟦</span>
+                        <span class="login-sso__name">Microsoft</span>
+                    </button>
+                    <button class="login-sso__btn" type="button" data-provider="Apple">
+                        <span class="login-sso__icon">🍎</span>
+                        <span class="login-sso__name">Apple</span>
+                    </button>
+                    <button class="login-sso__btn" type="button" data-provider="FIFA ID">
+                        <span class="login-sso__icon">⚽</span>
+                        <span class="login-sso__name">FIFA ID</span>
+                    </button>
+                </div>
+
+                <!-- Sign Up Link -->
+                <p class="login-signup">
+                    Don't have an account? <a href="#" class="login-signup__link">Request Access</a>
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ============================================================
+         MFA OVERLAY (Multi-Factor Authentication)
+         ============================================================ -->
+    <div id="mfaOverlay" class="auth-overlay hidden">
+        <div class="auth-modal glass-panel">
+            <div class="auth-modal__icon">📱</div>
+            <h3 class="auth-modal__title">Two-Factor Authentication</h3>
+            <p class="auth-modal__desc">Enter the 6-digit code sent to your authenticator app or device.</p>
+            <div class="auth-modal__inputs">
+                <input type="text" maxlength="1" class="mfa-input" autofocus>
+                <input type="text" maxlength="1" class="mfa-input">
+                <input type="text" maxlength="1" class="mfa-input">
+                <input type="text" maxlength="1" class="mfa-input">
+                <input type="text" maxlength="1" class="mfa-input">
+                <input type="text" maxlength="1" class="mfa-input">
+            </div>
+            <button class="login-submit" id="verifyMfaBtn" style="margin-top: 24px;">
+                <span class="login-submit__text">Verify Identity</span>
+                <span class="login-submit__spinner">
+                    <svg class="login-spinner-svg" viewBox="0 0 24 24"><circle class="login-spinner-circle" cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="3"></circle></svg>
+                </span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         SSO OVERLAY (Simulates Redirect)
+         ============================================================ -->
+    <div id="ssoOverlay" class="auth-overlay hidden">
+        <div class="auth-modal glass-panel" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px;">
+            <svg class="login-spinner-svg" viewBox="0 0 24 24" style="width:40px; height:40px; color:var(--blue-light);">
+                <circle class="login-spinner-circle" cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="3"></circle>
+            </svg>
+            <h3 class="auth-modal__title" id="ssoProviderName">Authenticating...</h3>
+            <p class="auth-modal__desc">Securely connecting to enterprise identity provider.</p>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         REQUEST ACCESS OVERLAY
+         ============================================================ -->
+    <div id="requestAccessOverlay" class="auth-overlay hidden">
+        <div class="auth-modal glass-panel">
+            <div class="auth-modal__icon">📩</div>
+            <h3 class="auth-modal__title">Request Access</h3>
+            <p class="auth-modal__desc">Please provide your details to securely create your PulseOS account.</p>
+            
+            <form id="requestAccessForm" style="margin-top: 20px; display: flex; flex-direction: column; gap: 16px;">
+                <div class="login-field">
+                    <label class="login-field__label">Full Name</label>
+                    <div class="login-field__input-wrap">
+                        <span class="login-field__icon">👤</span>
+                        <input type="text" id="requestName" class="login-field__input" placeholder="e.g. Jane Doe" required>
+                    </div>
+                </div>
+                <div class="login-field">
+                    <label class="login-field__label">Organization / Department</label>
+                    <div class="login-field__input-wrap">
+                        <span class="login-field__icon">🏢</span>
+                        <input type="text" id="requestOrg" class="login-field__input" placeholder="e.g. Operations / MetLife Stadium" required>
+                    </div>
+                </div>
+                <div class="login-field">
+                    <label class="login-field__label">Work Email</label>
+                    <div class="login-field__input-wrap">
+                        <span class="login-field__icon">✉️</span>
+                        <input type="email" id="requestEmail" class="login-field__input" placeholder="jane@fifa.org" required>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 12px; margin-top: 10px;">
+                    <button type="button" id="cancelRequestBtn" class="login-submit" style="background: var(--bg-tertiary); box-shadow: none; color: var(--text-primary);">
+                        <span class="login-submit__text">Cancel</span>
+                    </button>
+                    <button type="submit" id="submitRequestBtn" class="login-submit">
+                        <span class="login-submit__text">Submit Request</span>
+                        <span class="login-submit__spinner">
+                            <svg class="login-spinner-svg" viewBox="0 0 24 24"><circle class="login-spinner-circle" cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="3"></circle></svg>
+                        </span>
+                    </button>
+                </div>
+            </form>
+            <div id="requestAccessSuccess" style="margin-top: 20px; text-align: center; display: none;">
+                <div style="font-size: 32px; margin-bottom: 10px;">✅</div>
+                <h4 style="font-size: 16px; margin-bottom: 8px; color: var(--green-light);">Account Created Successfully</h4>
+                <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 20px;">Your credentials have been securely provisioned.</p>
+                <button type="button" id="closeRequestSuccessBtn" class="login-submit">
+                    <span class="login-submit__text">Enter Dashboard →</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load scripts -->
+    <script src="js/login.js"></script>
+</body>
+</html>
