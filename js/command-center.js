@@ -108,11 +108,38 @@
     }
   };
 
-  /* ---------- fallback response ---------- */
+  /* ---------- dynamic response generator ---------- */
   function getFallback(input) {
+    var lower = input.toLowerCase();
+    var fans = window.PulseData ? window.PulseData.crowd.total.toLocaleString() : '73,241';
+    
+    // Greeting
+    if (lower.match(/hello|hi|hey|greetings/)) {
+        return '👋 Hello! PulseOS Command Center is online. All 6 AI agents are actively monitoring ' + fans + ' fans. How can I assist you with stadium operations today?';
+    }
+    
+    // Status / Health
+    if (lower.match(/status|health|how are you/)) {
+        return '🟢 **System Status: Optimal**\n\n' +
+               '• **Overall Efficiency:** 99.2%\n' +
+               '• **Active Agents:** 6/6 Online\n' +
+               '• **Crowd Capacity:** ' + (window.PulseData ? Math.round(window.PulseData.crowd.total / 80000 * 100) : 91) + '%\n' +
+               '• **Network:** Zero latency detected across IoT mesh.\n\n' +
+               'Would you like a detailed breakdown of a specific sector?';
+    }
+
+    // Weather
+    if (lower.match(/weather|rain|temperature/)) {
+        return '⛅ **Current Weather at MetLife Stadium:**\n\n' +
+               '• **Temperature:** ' + (window.PulseData ? Math.round(window.PulseData.weather.temp) : 24) + '°C\n' +
+               '• **Condition:** ' + (window.PulseData ? window.PulseData.weather.condition : 'Partly Cloudy') + '\n' +
+               '• **Forecast:** No precipitation expected for the next 4 hours. Roof retraction is not recommended.\n\n' +
+               'I have automatically adjusted HVAC zones 1-4 for optimal fan comfort based on these metrics.';
+    }
+
+    // Default Fallback
     return '🤖 I understand you\'re asking about "' + input + '". Here\'s what I can tell you:\n\n' +
-      'Stadium operations are currently running at 99.2% efficiency. All 6 AI agents are active and monitoring ' +
-      (window.PulseData ? window.PulseData.crowd.total.toLocaleString() : '73,241') + ' fans across MetLife Stadium.\n\n' +
+      'Stadium operations are currently running at 99.2% efficiency. All 6 AI agents are active and monitoring ' + fans + ' fans across MetLife Stadium.\n\n' +
       'I can help you with:\n' +
       '• **Gate management** — "Open Gate D", "Gate status"\n' +
       '• **Crowd analysis** — "Predict crowd", "Check congestion"\n' +

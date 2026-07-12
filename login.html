@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#06060b">
     <meta name="description" content="PulseOS — The AI Operating System powering FIFA World Cup 2026 stadiums. Sign in to access the command center.">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Login — PulseOS</title>
 
     <!-- Google Fonts: Inter -->
@@ -191,8 +192,12 @@
                                 value=""
                                 placeholder="Enter your email"
                                 required
+                                autocomplete="username"
+                                aria-required="true"
+                                aria-describedby="email-error"
                             >
                         </div>
+                        <span id="email-error" class="sr-only" aria-live="polite"></span>
                     </div>
 
                     <!-- Password Field -->
@@ -207,11 +212,15 @@
                                 value=""
                                 placeholder="Enter your password"
                                 required
+                                autocomplete="current-password"
+                                aria-required="true"
+                                aria-describedby="password-error"
                             >
                             <button type="button" class="login-field__toggle" id="passwordToggle" aria-label="Toggle password visibility">
                                 👁️
                             </button>
                         </div>
+                        <span id="password-error" class="sr-only" aria-live="polite"></span>
                     </div>
 
                     <!-- Remember Me + Forgot Password -->
@@ -367,6 +376,8 @@
     </div>
 
     <!-- Load scripts -->
+    <script src="security/sanitize.js"></script>
+    <script src="security/auth.js"></script>
     <script src="js/login.js"></script>
 </body>
 </html>

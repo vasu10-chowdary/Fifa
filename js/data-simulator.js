@@ -8,11 +8,13 @@
   'use strict';
 
   /* ---------- helpers ---------- */
-  function rand(min, max) { return Math.random() * (max - min) + min; }
-  function randInt(min, max) { return Math.floor(rand(min, max + 1)); }
-  function pick(arr) { return arr[randInt(0, arr.length - 1)]; }
-  function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
-  function pct(v, total) { return Math.round((v / total) * 1000) / 10; }
+  var _u = window.PulseUtils || {};
+  function rand(min, max) { return _u.rand ? _u.rand(min, max) : Math.random() * (max - min) + min; }
+  function randInt(min, max) { return _u.randInt ? _u.randInt(min, max) : Math.floor(rand(min, max + 1)); }
+  function pick(arr) { return _u.pick ? _u.pick(arr) : arr[randInt(0, arr.length - 1)]; }
+  function clamp(v, lo, hi) { return _u.clamp ? _u.clamp(v, lo, hi) : Math.max(lo, Math.min(hi, v)); }
+  function pct(v, total) { return _u.pct ? _u.pct(v, total) : Math.round((v / total) * 1000) / 10; }
+
   function ts() {
     var d = new Date();
     var h = d.getHours();

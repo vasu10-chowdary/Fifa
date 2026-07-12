@@ -145,6 +145,25 @@
   /* ---------- cycling ---------- */
   var cycleInterval = null;
 
+  /**
+   * @typedef {Object} AIAgent
+   * @property {string} id - Unique identifier for the agent
+   * @property {string} name - Display name of the agent
+   * @property {string} icon - Emoji icon for the agent
+   * @property {string} tagline - Short description
+   * @property {string} color - Theme color (e.g., 'blue', 'cyan')
+   * @property {string[]} statusPool - Array of possible status messages
+   * @property {string[]} recPool - Array of possible recommendations
+   * @property {number} confidence - AI confidence score (0-100)
+   * @property {number} responseCount - Number of responses generated
+   * @property {number} statusIndex - Current index in statusPool
+   * @property {number} recIndex - Current index in recPool
+   */
+
+  /**
+   * Cycles the status and recommendations for all AI agents.
+   * Dispatches a custom 'agents-update' event on the window.
+   */
   function cycleAgents() {
     agents.forEach(function (agent) {
       agent.statusIndex = (agent.statusIndex + 1) % agent.statusPool.length;
@@ -158,6 +177,9 @@
     window.dispatchEvent(new CustomEvent('agents-update', { detail: agents }));
   }
 
+  /**
+   * Starts the agent cycling interval.
+   */
   function startCycling() {
     if (cycleInterval) return;
     cycleInterval = setInterval(cycleAgents, 6000);
@@ -165,18 +187,37 @@
 
   /* ---------- public API ---------- */
   window.AIAgents = {
+    /**
+     * @returns {AIAgent[]}
+     */
     getAll: function () { return agents; },
+
+    /**
+     * @param {string} id
+     * @returns {AIAgent|null}
+     */
     getById: function (id) {
       return agents.find(function (a) { return a.id === id; }) || null;
     },
+
+    /**
+     * @param {string} id
+     * @returns {string}
+     */
     getCurrentStatus: function (id) {
       var a = this.getById(id);
       return a ? a.statusPool[a.statusIndex] : '';
     },
+
+    /**
+     * @param {string} id
+     * @returns {string}
+     */
     getCurrentRec: function (id) {
       var a = this.getById(id);
       return a ? a.recPool[a.recIndex] : '';
     },
+    
     start: startCycling,
     agents: agents
   };

@@ -18,6 +18,15 @@
             'background: #1e293b; color: #94a3b8; padding: 6px 12px; border-radius: 0 4px 4px 0; font-size: 13px;'
         );
 
+        // Enforce Security
+        if (window.PulseAuth && window.PulseAuth.requireAuth) {
+            window.PulseAuth.requireAuth();
+        }
+        
+        if (window.PulseRBAC && window.PulseRBAC.enforceDashboard) {
+            window.PulseRBAC.enforceDashboard();
+        }
+
         // Initialize User Profile from Login
         initUserProfile();
 
@@ -232,8 +241,12 @@
             link.addEventListener('click', function (e) {
                 e.preventDefault();
                 
-                links.forEach(function (l) { l.classList.remove('active'); });
+                links.forEach(function (l) {
+                    l.classList.remove('active');
+                    l.removeAttribute('aria-current');
+                });
                 link.classList.add('active');
+                link.setAttribute('aria-current', 'page');
                 
                 document.querySelectorAll('.dashboard-view').forEach(function (v) {
                     v.classList.remove('active');
@@ -265,6 +278,10 @@
                 }
             });
         });
+
+        // Set aria-current on initial active item
+        var initActive = document.querySelector('.sidebar-item.active');
+        if (initActive) initActive.setAttribute('aria-current', 'page');
     }
 
 

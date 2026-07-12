@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#06060b">
     <meta name="description" content="PulseOS Command Center — FIFA World Cup 2026 AI Operating System. Real-time stadium operations, crowd intelligence, AI agents, and digital twin technology.">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>PulseOS Command Center — FIFA World Cup 2026</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body class="dashboard-body">
-
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <!-- Mobile Menu Button (shown only on small screens) -->
     <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open navigation menu">☰</button>
 
@@ -25,56 +25,56 @@
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <!-- Sidebar -->
-    <aside class="sidebar" id="mainSidebar">
+    <aside class="sidebar" id="mainSidebar" role="navigation" aria-label="Main Navigation">
         <div class="sidebar-logo">
             <div class="sidebar-logo-icon">⚡</div>
             <div class="sidebar-logo-text">PulseOS</div>
             <div class="sidebar-logo-version">v3.0</div>
         </div>
         
-        <nav class="sidebar-nav">
+        <nav class="sidebar-nav" aria-label="Main navigation">
             <div class="sidebar-section-label">COMMAND</div>
-            <a href="#" class="sidebar-item active" data-view="view-command">
-                <span class="sidebar-item-icon">🏠</span> Command Center
+            <a href="#" class="sidebar-item active" data-view="view-command" aria-label="Command Center">
+                <span class="sidebar-item-icon" aria-hidden="true">🏠</span> Command Center
             </a>
-            <a href="#" class="sidebar-item" data-view="view-agents">
-                <span class="sidebar-item-icon">🤖</span> AI Agents
+            <a href="#" class="sidebar-item" data-view="view-agents" aria-label="AI Agents">
+                <span class="sidebar-item-icon" aria-hidden="true">🤖</span> AI Agents
             </a>
-            <a href="#" class="sidebar-item" data-view="view-twin">
-                <span class="sidebar-item-icon">🏟️</span> Digital Twin
+            <a href="#" class="sidebar-item" data-view="view-twin" aria-label="Digital Twin Stadium">
+                <span class="sidebar-item-icon" aria-hidden="true">🏟️</span> Digital Twin
             </a>
 
             <div class="sidebar-section-label">INTELLIGENCE</div>
-            <a href="#" class="sidebar-item" data-view="view-crowd">
-                <span class="sidebar-item-icon">👥</span> Crowd Intel
+            <a href="#" class="sidebar-item" data-view="view-crowd" aria-label="Crowd Intelligence">
+                <span class="sidebar-item-icon" aria-hidden="true">👥</span> Crowd Intel
             </a>
-            <a href="#" class="sidebar-item" data-view="view-transport">
-                <span class="sidebar-item-icon">🚇</span> Transport Hub
+            <a href="#" class="sidebar-item" data-view="view-transport" aria-label="Transport Hub">
+                <span class="sidebar-item-icon" aria-hidden="true">🚇</span> Transport Hub
             </a>
-            <a href="#" class="sidebar-item" data-view="view-access">
-                <span class="sidebar-item-icon">♿</span> Accessibility
+            <a href="#" class="sidebar-item" data-view="view-access" aria-label="Accessibility">
+                <span class="sidebar-item-icon" aria-hidden="true">♿</span> Accessibility
             </a>
-            <a href="#" class="sidebar-item" data-view="view-lang">
-                <span class="sidebar-item-icon">🌐</span> Multilingual
+            <a href="#" class="sidebar-item" data-view="view-lang" aria-label="Multilingual Support">
+                <span class="sidebar-item-icon" aria-hidden="true">🌐</span> Multilingual
             </a>
 
             <div class="sidebar-section-label">OPERATIONS</div>
-            <a href="#" class="sidebar-item" data-view="view-sustain">
-                <span class="sidebar-item-icon">🌱</span> Sustainability
+            <a href="#" class="sidebar-item" data-view="view-sustain" aria-label="Sustainability Operations">
+                <span class="sidebar-item-icon" aria-hidden="true">🌱</span> Sustainability
             </a>
-            <a href="#" class="sidebar-item" data-view="view-emergency">
-                <span class="sidebar-item-icon">🚨</span> Emergency <span class="sidebar-item-badge red">3</span>
+            <a href="#" class="sidebar-item" data-view="view-emergency" aria-label="Emergency Response">
+                <span class="sidebar-item-icon" aria-hidden="true">🚨</span> Emergency <span class="sidebar-item-badge red">3</span>
             </a>
-            <a href="#" class="sidebar-item" data-view="view-analytics">
-                <span class="sidebar-item-icon">📊</span> Analytics
+            <a href="#" class="sidebar-item" data-view="view-analytics" aria-label="Analytics">
+                <span class="sidebar-item-icon" aria-hidden="true">📊</span> Analytics
             </a>
-            <a href="#" class="sidebar-item" data-view="view-timeline">
-                <span class="sidebar-item-icon">⏱️</span> Live Timeline
+            <a href="#" class="sidebar-item" data-view="view-timeline" aria-label="Live Event Timeline">
+                <span class="sidebar-item-icon" aria-hidden="true">⏱️</span> Live Timeline
             </a>
 
             <div class="sidebar-section-label">MANAGEMENT</div>
-            <a href="#" class="sidebar-item" data-view="view-executive">
-                <span class="sidebar-item-icon">📈</span> Executive
+            <a href="#" class="sidebar-item" data-view="view-executive" aria-label="Executive Insights">
+                <span class="sidebar-item-icon" aria-hidden="true">📈</span> Executive
             </a>
         </nav>
 
@@ -95,8 +95,7 @@
         </div>
     </aside>
 
-    <!-- Main Content -->
-    <main class="main-content">
+    <main class="main-content" id="main-content" role="main">
 
         <!-- ============================================================
              VIEW 1: COMMAND CENTER
@@ -1237,6 +1236,12 @@
     <!-- Floating AI Button -->
     <button class="ai-fab">⚡</button>
 
+    <!-- Security & Utilities (must load first) -->
+    <script src="js/utils.js"></script>
+    <script src="security/sanitize.js"></script>
+    <script src="security/auth.js"></script>
+    <script src="security/rbac.js"></script>
+
     <!-- Load ALL scripts -->
     <script src="js/data-simulator.js"></script>
     <script src="js/charts.js"></script>
@@ -1244,8 +1249,8 @@
     <script src="js/ai-agents.js"></script>
     <script src="js/ai-timeline.js"></script>
     <script src="js/command-center.js"></script>
-    
-    <!-- Final app.js to initialize -->
+
+    <!-- Main app -->
     <script src="js/app.js"></script>
 </body>
 </html>
